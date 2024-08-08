@@ -14,15 +14,16 @@
 
 <div class="auth">
     <div class="auth-inner">
-        <p>会員登録ありがとうございます<br>
-            <span class="email-verify">
-                ご登録いただいたメールアドレス宛に登録確認用のご案内をお送りしました。<br>
-                メールの内容を確認して、アカウントの登録を完了してください。
-            </span>
+        <h2>会員登録ありがとうございます</h2>
+        <p class="email-verify">
+            ご登録いただいたメールアドレス宛に登録確認用のご案内をお送りしました。<br>
+            メールの内容を確認して、アカウントの登録を完了してください。
+
         </p>
-        <a href="/login">ログインする</a>
+        <div class="auth-form__link">
+            <a href="/login">ログインする</a>
+        </div>
     </div>
-</div>
 
 
-@endsection
+    @endsection

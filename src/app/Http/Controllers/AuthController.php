@@ -19,8 +19,8 @@ use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Features;
-use App\Http\Requests\RegisterRequest;
-use App\Http\Requests\LoginRequest;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use App\Http\Requests\AuthRequest;
 
 class AuthController extends Controller
 {
@@ -28,11 +28,12 @@ class AuthController extends Controller
     protected $guard;
 
     //Registerの処理
-    public function register(Request $request, CreatesNewUsers $creator): RegisterResponse
+    public function register(AuthRequest $request, CreatesNewUsers $creator): RegisterResponse
     {
         $request->merge(['username' => $request->email,]);
         event(new Registered($user = $creator->create($request->all())));
-
+        // $this->guard->login($user);
+        Auth::login($user);
         return app(RegisterResponse::class);
     }
 
@@ -43,7 +44,7 @@ class AuthController extends Controller
     }
 
     //loginの処理
-    public function login(Request $request)
+    public function login(AuthRequest $request)
     {
         return $this->loginPipeline($request)->then(function ($request) {
             return app(LoginResponse::class);
@@ -69,6 +70,7 @@ class AuthController extends Controller
             Features::enabled(Features::twoFactorAuthentication()) ? RedirectIfTwoFactorAuthenticatable::class : null,
             AttemptToAuthenticate::class,
             PrepareAuthenticatedSession::class,
+            // EnsureEmailIsVerified::class,
         ]));
     }
 
@@ -76,12 +78,10 @@ class AuthController extends Controller
     public function logout(Request $request): LogoutResponse
     {
         Auth::guard('web')->logout();
-
         if ($request->hasSession()) {
             $request->session()->invalidate();
             $request->session()->regenerateToken();
         }
-
         return app(LogoutResponse::class);
     }
 }

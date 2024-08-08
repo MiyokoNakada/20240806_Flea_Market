@@ -22,27 +22,28 @@
                 <label for="email">メールアドレス</label>
                 <input type="email" name="email" value="{{ old('email') }}">
                 <div class="error">
-                            @error('email')
-                            {{ $message }}
-                            @enderror
-                        </div>
+                    @error('email')
+                    {{ $message }}
+                    @enderror
+                </div>
 
             </div>
             <div class="auth-form__item">
                 <label for="password">パスワード</label>
                 <input type="password" name="password" value="{{ old('password') }}">
                 <div class="error">
-                            @error('password')
-                            {{ $message }}
-                            @enderror
-                        </div>
+                    @error('password')
+                    {{ $message }}
+                    @enderror
+                </div>
             </div>
             <div class="auth-form__submit">
                 <button class="auth-form__btn" type="submit">登録する</button>
             </div>
         </form>
-        <a class="auth-form__link" href="/login">ログインはこちら</a>
-
+        <div class="auth-form__link">
+            <a href="/login">ログインはこちら</a>
+        </div>
     </div>
 </div>
 
