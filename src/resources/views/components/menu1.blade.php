@@ -1,5 +1,5 @@
-<div class="menu1">
-    <div class="header__logo">
+<div class="menu">
+    <div class="header-logo">
         <img src="{{ asset('img/logo.svg') }}" alt="COACHTECH">
     </div>
 </div>

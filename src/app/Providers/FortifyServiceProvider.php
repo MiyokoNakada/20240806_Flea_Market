@@ -51,7 +51,7 @@ class FortifyServiceProvider extends ServiceProvider
         );
 
         Fortify::verifyEmailView(function () {
-            return view('auth.login')->with('access-alert', 'メールをご確認いただき、アカウントの登録を完了してください');
+            return view('auth.login');
         });
     }
 }

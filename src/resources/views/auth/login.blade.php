@@ -19,8 +19,8 @@
         <div class="alert">
             {{ session('access-alert') }}
         </div>
-        
-        <form class="auth-form__form" action="/login" method="post">
+
+        <form class="auth-form" action="/login" method="post">
             @csrf
             <div class="auth-form__item">
                 <label for="email">メールアドレス</label>
@@ -45,8 +45,9 @@
                 <button class="auth-form__btn" type="submit">ログインする</button>
             </div>
         </form>
-        <a class="auth-form__link" href="/register">会員登録はこちら</a>
-
+        <div class="auth-form__link">
+            <a href="/register">会員登録はこちら</a>
+        </div>
     </div>
 </div>
 
