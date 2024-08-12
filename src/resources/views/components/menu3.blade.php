@@ -1,12 +1,14 @@
 <div class="menu">
     <div class="header-logo">
-        <img src="{{ asset('img/logo.svg') }}" alt="COACHTECH">
+        <a href="/">
+            <img src="{{ asset('img/logo.svg') }}" alt="COACHTECH">
+        </a>
     </div>
 
     <div class="header-search">
-        <form action="/search" method="post">
+        <form class="search__form" action="/item/search" method="post">
             @csrf
-            <input type="text" placeholder="なにをお探しですか？">
+            <input class="search__option" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
         </form>
     </div>
 
