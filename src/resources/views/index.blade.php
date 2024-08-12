@@ -25,8 +25,31 @@
 
 @section('content')
 
-おすすめ
+<div class="index-inner">
+    <div class="index-button">
+        <div class="index-button-inner">
+            <button><a href="/">おすすめ</a></button>
+            <button><a href="/">マイリスト</a></button>
+        </div>
+    </div>
 
-マイリスト
+    <div class="items">
+        @foreach($items as $item)
+        <div class="item-cards">
+            <div class="item-cards__img">
+                <a href="{{ url('/item/' . $item->id) }}">
+                    <img src="{{ asset('storage/image/' . $item->image) }}" alt="">
+                </a>
+            </div>
+            <div class="item-cards__label">
+                <p>{{ $item->name }}</p>
+                <p>&yen;{{ $item->price }}</p>
+            </div>
+        </div>
+        @endforeach
+    </div>
+
+</div>
+
 
 @endsection

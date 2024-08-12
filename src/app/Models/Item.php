@@ -34,4 +34,18 @@ class Item extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class);
+    }
+
+    //検索用のローカルスコープ
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if (!empty($keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%')
+                ->orWhere('description', 'like', '%' . $keyword . '%');
+        }
+    }
 }
