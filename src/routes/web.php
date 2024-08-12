@@ -13,11 +13,13 @@ Route::get('/thanks', [AuthController::class, 'thanks']);
 
 Route::get('/', [ItemController::class, 'index']);
 Route::post('/item/search', [ItemController::class, 'search']);
-Route::get('/item/{item_id}', [ItemController::class, 'detail']);
+Route::get('/item/{item_id}', [ItemController::class, 'detail'])->name('detail');
 
 
 Route::middleware(['auth', 'verified'])->group(
     function () {
+        Route::post('/item/{item_id}/comment', [ItemController::class, 'comment']);
+
         Route::get('/mypage', [MypageController::class, 'mypage']);
         Route::get('/mypage/profile', [MypageController::class, 'profile']);
 
