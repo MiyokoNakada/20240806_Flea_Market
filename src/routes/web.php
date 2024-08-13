@@ -19,6 +19,7 @@ Route::get('/item/{item_id}', [ItemController::class, 'detail'])->name('detail')
 Route::middleware(['auth', 'verified'])->group(
     function () {
         Route::post('/item/{item_id}/comment', [ItemController::class, 'comment']);
+        Route::delete('/item/{item_id}/comment/{comment_id}', [ItemController::class, 'deleteComment']);
 
         Route::get('/mypage', [MypageController::class, 'mypage']);
         Route::get('/mypage/profile', [MypageController::class, 'profile']);

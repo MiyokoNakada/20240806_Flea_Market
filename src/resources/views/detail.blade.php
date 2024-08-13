@@ -24,12 +24,17 @@
 @endsection
 
 @section('content')
+<div class="alert">
+    {{ session('message') }}
+</div>
+
 <div class="detail">
     <div class="detail-inner-left">
         <div class="item-image">
             <img src="{{ asset('storage/image/' . $item->image) }}" alt="商品画像">
         </div>
     </div>
+
     <div class="detail-inner-right">
         <div class="item-overview">
             <h2>{{ $item->name }}</h2>
@@ -37,7 +42,8 @@
             <p><span class="item-overview_price">&yen;{{ $item->price }}(値段)</span></p>
             <div class="item-overview__button">
                 <div class="favourite-count">
-                    <i class="item-cards__favourite fa-regular fa-star fa-lg" data-user-id="{{ Auth::user()->id }}" data-item-id="{{ $item->id }}"></i>
+                    <i class="item-cards__favourite fa-regular fa-star fa-lg"
+                        {{-- data-user-id="{{ Auth::user()->id }}" data-item-id="{{ $item->id }}" --}}></i>
                     <p>5</p>
                 </div>
                 <div class="comment-count">
@@ -56,6 +62,7 @@
                 <h3>商品説明</h3>
                 <p>{!! nl2br(htmlspecialchars($item->description)) !!}</p>
             </div>
+
             <div class="item-information">
                 <h3>商品の情報</h3>
                 <table class="item-information__table">
@@ -69,6 +76,7 @@
                     </tr>
                 </table>
             </div>
+
             <div class="comment">
                 <div class="comment-history">
                     @foreach($item->comments as $comment)
@@ -76,11 +84,25 @@
                     <div class="comment-seller">
                         <p>{{ $comment->user->name }}</p>
                         <p>{{ $comment->comment }}</p>
+                        @if(Auth::check() && Auth::id() == $comment->user_id)
+                        <form class="comment-seller__form" action="{{ url('/item/' . $item->id . '/comment/' . $comment->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('このコメントを削除してもよろしいですか？')">×</button>
+                        </form>
+                        @endif
                     </div>
                     @else
                     <div class="comment-buyer">
                         <p>{{ $comment->user->name }}</p>
                         <p>{{ $comment->comment }}</p>
+                        @if(Auth::check() && Auth::id() == $comment->user_id)
+                        <form class="comment-buyer__form" action="{{ url('/item/' . $item->id . '/comment/' . $comment->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('このコメントを削除してもよろしいですか？')">×</button>
+                        </form>
+                        @endif
                     </div>
                     @endif
                     @endforeach
@@ -93,9 +115,7 @@
                         <button type="submit">コメントを送信する</button>
                     </form>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>
