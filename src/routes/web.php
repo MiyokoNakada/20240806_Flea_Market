@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SellController;
+use App\Http\Controllers\FavouriteController;
+
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -20,6 +22,11 @@ Route::middleware(['auth', 'verified'])->group(
     function () {
         Route::post('/item/{item_id}/comment', [ItemController::class, 'comment']);
         Route::delete('/item/{item_id}/comment/{comment_id}', [ItemController::class, 'deleteComment']);
+
+        Route::post('/favourite/{item_id}', [FavouriteController::class, 'favourite']);
+        Route::delete('/unfavourite/{item_id}', [FavouriteController::class, 'unfavourite']);
+        Route::get('/favourite_count/{item_id}', [FavouriteController::class, 'favouriteCount']);
+
 
         Route::get('/mypage', [MypageController::class, 'mypage']);
         Route::get('/mypage/profile', [MypageController::class, 'profile']);

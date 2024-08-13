@@ -9,6 +9,7 @@ use App\Models\Item;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Condition;
+use App\Models\Favourite;
 
 
 class ItemController extends Controller
@@ -38,10 +39,15 @@ class ItemController extends Controller
     {
         $categories = Category::all();
         $conditions = Condition::all();
-        $item = Item::with('category','condition','comments')->find($item_id);
+        $item = Item::with('category','condition','comments')
+                ->withCount('favourites')
+                ->find($item_id);
+
         $sellerId = $item->user_id; // 出品者のuser_id
 
-        return view('detail', compact('item', 'categories', 'conditions', 'sellerId'));
+        $isFavourited = Auth::check() ? Favourite::where('user_id', Auth::id())->where('item_id', $item_id)->exists() : false; // お気に入りの情報を取得
+
+        return view('detail', compact('item', 'categories', 'conditions','sellerId', 'isFavourited'));
     }
 
     //コメント投稿機能

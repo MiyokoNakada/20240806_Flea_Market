@@ -42,12 +42,11 @@
             <p><span class="item-overview_price">&yen;{{ $item->price }}(値段)</span></p>
             <div class="item-overview__button">
                 <div class="favourite-count">
-                    <i class="item-cards__favourite fa-regular fa-star fa-lg"
-                        {{-- data-user-id="{{ Auth::user()->id }}" data-item-id="{{ $item->id }}" --}}></i>
-                    <p>5</p>
+                    <i class="favourite-icon fa-regular fa-star fa-lg {{ $isFavourited ? 'favourited' : '' }}" data-item-id="{{ $item->id }}"></i>
+                    <p id="favourite-count-{{ $item->id }}">{{ $item->favourites_count }}</p>
                 </div>
                 <div class="comment-count">
-                    <i class="fa-regular fa-comment fa-lg"></i>
+                    <i class="comment-icon fa-regular fa-comment fa-lg"></i>
                     <p>5</p>
                 </div>
             </div>
@@ -110,7 +109,7 @@
                 <div class="comment-submit">
                     <form action="{{ url('/item/' . $item->id . '/comment') }}" method="post">
                         @csrf
-                        <label for="commen">商品へのコメント</label>
+                        <label for="comment">商品へのコメント</label>
                         <textarea name="comment" id="comment" cols="40" rows="6">{{old('description')}}</textarea>
                         <button type="submit">コメントを送信する</button>
                     </form>
