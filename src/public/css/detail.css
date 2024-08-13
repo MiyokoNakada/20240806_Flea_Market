@@ -43,6 +43,13 @@
     padding: 5px 10px;
     text-align: center;
 }
+.favourite-icon,
+.comment-icon{
+    cursor: pointer;
+}
+.favourite-icon.favourited{
+    color: #FF5555;
+}
 
 .favourite-count p,
 .comment-count p{
@@ -130,6 +137,7 @@
 .comment-history button{
     border: none;
     border-radius: 50%;
+    background-color: #D9D9D9;
     cursor: pointer;
 }
 
