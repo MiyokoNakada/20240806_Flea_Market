@@ -55,4 +55,15 @@ class ItemController extends Controller
 
         return redirect()->route('detail', ['item_id' => $item_id]); 
     }
+
+    //コメント削除機能
+    public function deleteComment($item_id, $comment_id) {
+        $comment = Comment::find($comment_id);
+        if (Auth::id() !== $comment->user_id) {
+            abort(403, 'Unauthorized action.');
+        }        
+        $comment->delete();
+
+        return redirect()->route('detail', ['item_id' => $item_id])->with('message', 'コメントが削除されました。'); 
+    }
 }

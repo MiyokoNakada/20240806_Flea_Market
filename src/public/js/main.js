@@ -1,13 +1,3 @@
-//search function(Menu2、Menu3)
-// document.addEventListener('DOMContentLoaded', function() {
-//     document.querySelectorAll('.search__option').forEach(function(element) {
-//         element.addEventListener('change', function() {
-//             document.querySelector('.search__form').submit();
-//         });
-//     });
-// });
-
-
 //image-preview(出品ページ)
 function previewImage(event) {
     var reader = new FileReader();

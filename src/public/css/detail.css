@@ -106,16 +106,37 @@
     margin-top: 0;
     font-size: 11px;
 }
+
+.comment-seller {
+    text-align: left;
+    position: relative;
+}
+.comment-buyer {
+    text-align: right;
+    position: relative;
+}
+.comment-seller__form{
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    
+}
+.comment-buyer__form{
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    
+}
+.comment-history button{
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .comment-submit label{
     font-size: 12px;
     font-weight: bold;
 }
 .comment-submit textarea{
     width: 100%;
-}
-.comment-seller {
-    text-align: left;
-}
-.comment-buyer {
-    text-align: right;
 }
