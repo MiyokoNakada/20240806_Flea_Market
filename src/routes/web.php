@@ -20,6 +20,7 @@ Route::get('/item/{item_id}', [ItemController::class, 'detail'])->name('detail')
 
 Route::middleware(['auth', 'verified'])->group(
     function () {
+        Route::get('myfavourite', [ItemController::class, 'myFavourite']);
         Route::post('/item/{item_id}/comment', [ItemController::class, 'comment']);
         Route::delete('/item/{item_id}/comment/{comment_id}', [ItemController::class, 'deleteComment']);
 

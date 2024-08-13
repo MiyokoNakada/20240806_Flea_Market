@@ -29,7 +29,7 @@
     <div class="index-button">
         <div class="index-button-inner">
             <button><a href="/">おすすめ</a></button>
-            <button><a href="/">マイリスト</a></button>
+            <button><a href="/myfavourite">マイリスト</a></button>
         </div>
     </div>
 
@@ -48,7 +48,6 @@
         </div>
         @endforeach
     </div>
-
 </div>
 
 
