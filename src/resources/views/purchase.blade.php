@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('purchase/purchase.css') }}">
+<link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
 @endsection
 
 @section('header')
@@ -13,33 +13,46 @@
 @section('content')
 
 <div class="purchase">
-    <div class="purcase-inner_left">
+    <div class="purchase-inner-left">
         <div class="item-info">
-            <img src="" alt="">商品画像
-            <h3>商品名</h3>
-            <p>price</p>
+            <div class="item-info__left">
+                <img src="{{ asset('storage/image/' . $item->image) }}" alt="商品画像">
+            </div>
+            <div class="item-info__right">
+                <h3>{{ $item->name }}</h3>
+                <p>&yen;{{ $item->price }}</p>
+            </div>
         </div>
         <div class="payment-method">
-            <p>支払い方法</p>
-            <p>コンビニ・クレジット・銀行</p>
-            <a href="/purchase/payment_method">変更する</a>
+            <div class="payment-method__left">
+                <p>支払い方法</p>
+                <p>コンビニ・クレジット・銀行</p>
+            </div>
+            <div class="payment-method__right">
+                <a href="/purchase/payment_method">変更する</a>
+            </div>
         </div>
         <div class="delivery-address">
-            <p>配送先</p>
-            <p>住所</p>
-            <a href="/purchase/address">変更する</a>
+            <div class="delivery-address__left">
+                <p>配送先</p>
+                <p>住所</p>
+            </div>
+            <div class="delivery-address__right">
+                <a href="/purchase/address">変更する</a>
+            </div>
         </div>
     </div>
-    <div class="purchase-inner_right">
+
+    <div class="purchase-inner-right">
         <div class="purchase-recap">
-            <table>
+            <table class="purchase-recap__table">
                 <tr>
                     <th>商品代金</th>
-                    <td>price</td>
+                    <td>&yen;{{ $item->price }}</td>
                 </tr>
                 <tr>
                     <th>支払金額</th>
-                    <td>price</td>
+                    <td>&yen;{{ $item->price }}</td>
                 </tr>
                 <tr>
                     <th>支払い方法</th>

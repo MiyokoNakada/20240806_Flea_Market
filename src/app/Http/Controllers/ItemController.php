@@ -51,7 +51,7 @@ class ItemController extends Controller
     {
         $categories = Category::all();
         $conditions = Condition::all();
-        $item = Item::with('category', 'condition', 'comments')
+        $item = Item::with('categories', 'condition', 'comments')
             ->withCount('favourites')
             ->find($item_id);
 

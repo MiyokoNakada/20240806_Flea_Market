@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class PurchaseController extends Controller
 {
-    public function purchase()
+    //商品購入ページ表示
+    public function purchase($item_id)
     {
-        return view('purchase');
+        $item = Item::find($item_id);
+
+        return view('purchase', compact('item'));
     }
 
     public function paymentMethod()
