@@ -35,6 +35,8 @@ class SellController extends Controller
             $form['image'] = $imageName;
             Item::find($item->id)->update($form);
         }
+        $item->categories()->sync($request->categories);
+
         return redirect('/')->with('message', '出店しました');
     }
 }

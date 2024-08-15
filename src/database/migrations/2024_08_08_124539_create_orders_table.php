@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignID('user_id')->constrained();
             $table->foreignID('item_id')->constrained();
-            $table->integer('amount');
-            $table->string('delivery_address', 255);
+            $table->string('postal_code', 255);
+            $table->string('address', 255);
+            $table->string('building', 255)->nullable();
             $table->timestamps();
         });
     }

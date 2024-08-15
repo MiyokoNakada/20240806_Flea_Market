@@ -14,18 +14,19 @@ h2{
     margin-bottom: 20px;
 }
 
-.sell-form__group p{
+.sell-form__group h3{
     font-size:20px;
     font-weight: bold;    
     border-bottom: #5F5F5F solid 0.5px;
 }
 
-.sell-form__group label{
+.sell-form__group h4{
     font-size: 16px;
     font-weight: bold;
+    margin: 0;
 }
 
-.sell-form__group input:not(.sell-form__image),
+.sell-form__group input:not(.sell-form__image,.sell-form__checkbox),
 .sell-form__group select{
     width: 100%;
     height: 36px ;
@@ -33,8 +34,8 @@ h2{
     border: #5F5F5F solid 0.5px;
     border-radius: 4px;
     padding-left: 10px;
-    margin-bottom: 10px;
-    appearance: none;  /* 矢印 */
+    margin-bottom: 20px;
+    appearance: none;  /* select矢印 */
 }
 
 .sell-form__image{
@@ -78,6 +79,16 @@ h2{
     object-fit: cover;
 }
 
+.sell-form__group-category{
+    margin-bottom: 20px;
+}
+.sell-form__checkbox{
+    width: 15px;
+    height: 15px;
+}
+.sell-form__group-category label{
+    margin-right: 20px;
+}
 
 .sell-form__submit button{
     width: 100%;
