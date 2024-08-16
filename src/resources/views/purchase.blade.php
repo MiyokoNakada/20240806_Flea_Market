@@ -26,19 +26,19 @@
         <div class="payment-method">
             <div class="payment-method__left">
                 <p>支払い方法</p>
-                <p>コンビニ・クレジット・銀行</p>
+                <p></p>
             </div>
             <div class="payment-method__right">
-                <a href="/purchase/payment_method">変更する</a>
+                <a href="{{ url('/purchase/payment_method/' . $item->id ) }}">変更する</a>
             </div>
         </div>
         <div class="delivery-address">
             <div class="delivery-address__left">
                 <p>配送先</p>
-                <p>住所</p>
+                <p></p>
             </div>
             <div class="delivery-address__right">
-                <a href="/purchase/address">変更する</a>
+                <a href="{{ url('/purchase/address/' . $item->id ) }}">変更する</a>
             </div>
         </div>
     </div>
@@ -56,12 +56,20 @@
                 </tr>
                 <tr>
                     <th>支払い方法</th>
-                    <td>コンビニ</td>
+                    <td>{{ $payment_method }}</td>
                 </tr>
             </table>
         </div>
         <div class="purchase-submit">
-            <button>購入する</button>
+            <form action="{{ url('/purchase/' . $item->id ) }}" method="post">
+                @csrf
+                <button>購入する</button>
+            </form>
+            <div class="alert">
+                @foreach ($errors->all() as $error)
+                {{ $error }}
+                @endforeach
+            </div>
         </div>
     </div>
 </div>

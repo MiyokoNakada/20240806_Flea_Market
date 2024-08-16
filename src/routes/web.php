@@ -30,12 +30,17 @@ Route::middleware(['auth', 'verified'])->group(
 
 
         Route::get('/mypage', [MypageController::class, 'mypage']);
+        Route::get('/mypage/bought_items', [MypageController::class, 'boughtItems']);
         Route::get('/mypage/profile', [MypageController::class, 'profile']);
-
+        Route::post('/mypage/profile', [MypageController::class, 'updateProfile']);
         
-        Route::get('/purchase/payment_method', [PurchaseController::class, 'paymentMethod']);
-        Route::get('/purchase/address', [PurchaseController::class, 'addressChange']);
-        Route::get('/purchase/{item_id}', [PurchaseController::class, 'purchase']);
+        Route::get('/purchase/payment_method/{item_id}', [PurchaseController::class, 'paymentMethod']);
+        Route::post('/purchase/payment_method', [PurchaseController::class, 'changePaymentMethod']);
+        Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'addressChange']);
+        Route::post('/purchase/address', [PurchaseController::class, 'updateAddress']);
+        Route::get('/purchase/{item_id}', [PurchaseController::class, 'purchase'])->name('purchase');
+        Route::post('/purchase/{item_id}', [PurchaseController::class, 'completeOrder']);
+        Route::post('/purchase/{item_id}/payment', [PurchaseController::class, 'payment']);
         
         Route::get('/sell', [SellController::class, 'sellerPage']);
         Route::post('/sell', [SellController::class, 'sell']);

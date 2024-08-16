@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('purchase/purchase.css') }}">
+<link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
 @endsection
 
 @section('header')
@@ -18,6 +18,7 @@
 
         <form class="payment-method-form" action="/purchase/payment_method" method="post">
             @csrf
+            <input type="hidden" name="item_id" value="{{$item_id}}">
             <div class="payment-method-form__item">
                 <select name="payment_method">
                     <option value=""></option>

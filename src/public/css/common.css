@@ -1,4 +1,5 @@
 .error,
-.alert{
+.alert,
+.message{
     color: red;
 }

@@ -17,7 +17,7 @@ class ItemController extends Controller
     //トップページ表示
     public function index()
     {
-        $items = Item::all();
+        $items = Item::where('sold', false)->get();
 
         return view('index', compact('items'));
     }
@@ -52,7 +52,7 @@ class ItemController extends Controller
         $categories = Category::all();
         $conditions = Condition::all();
         $item = Item::with('categories', 'condition', 'comments')
-            ->withCount('favourites')
+            ->withCount(['favourites','comments'])
             ->find($item_id);
 
         $sellerId = $item->user_id; // 出品者のuser_id
