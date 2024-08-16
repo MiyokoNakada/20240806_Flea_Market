@@ -1,4 +1,4 @@
-//image-preview(出品ページ)
+//image-preview(出品ページ、プロフィール編集ページ)
 function previewImage(event) {
     var reader = new FileReader();
     reader.onload = function(){

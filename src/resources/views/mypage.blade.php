@@ -14,19 +14,22 @@
 @section('content')
 
 <div class="mypage-inner">
+    <div class="message">{{ session('message') }}</div>
 
     <div class="user-info">
-        <div class="user-info-inner">
-            <img src="" alt="profile">
-            <h2>{{ $user->name }} さん</h2>
-            <a href="/mypage/profile">プロフィールを編集</a>
-        </div>
+        @if($user->profile && $user->profile->profile_image)
+        <img src="{{ asset('storage/image/' . $user->profile->profile_image) }}" alt="">
+        @else
+        <img src="" alt="">
+        @endif
+        <h2>{{ $user->name }} さん</h2>
+        <a href="/mypage/profile">プロフィールを編集</a>
     </div>
 
     <div class="mypage-button">
         <div class="mypage-button-inner">
             <button><a href="/mypage">出品した商品</a></button>
-            <button><a href="/mypage">購入した商品</a></button>
+            <button><a href="/mypage/bought_items">購入した商品</a></button>
         </div>
     </div>
     <div class="items">

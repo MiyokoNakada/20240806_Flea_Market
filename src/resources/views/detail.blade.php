@@ -42,20 +42,24 @@
             <p><span class="item-overview_price">&yen;{{ $item->price }}(値段)</span></p>
             <div class="item-overview__button">
                 <div class="favourite-count">
-                    <i class="favourite-icon fa-regular fa-star fa-lg {{ $isFavourited ? 'favourited' : '' }}" data-item-id="{{ $item->id }}"></i>
+                    <i class="favourite-icon fa-regular fa-star fa-xl {{ $isFavourited ? 'favourited' : '' }}" data-item-id="{{ $item->id }}"></i>
                     <p id="favourite-count-{{ $item->id }}">{{ $item->favourites_count }}</p>
                 </div>
                 <div class="comment-count">
-                    <i class="comment-icon fa-regular fa-comment fa-lg"></i>
-                    <p>5</p>
+                    <i class="comment-icon fa-regular fa-comment fa-xl"></i>
+                    <p>{{ $item->comments_count }}</p>
                 </div>
             </div>
         </div>
         <div class="item-contents">
             <div class="purchase-button">
+                @if($item->sold)
+                <p>この商品は既に売り切れています。</p>
+                @else
                 <a href="{{ url('/purchase/' . $item->id) }}">
                     <button>購入する</button>
                 </a>
+                @endif
             </div>
             <div class="item-description">
                 <h3>商品説明</h3>
@@ -69,7 +73,7 @@
                         <th>カテゴリー</th>
                         <td class="item-information__table_category">
                             @foreach($item->categories as $category)
-                            {{ $category->category_name }}
+                            <span>{{ $category->category_name }}</span>
                             @endforeach
                         </td>
                     </tr>

@@ -76,6 +76,11 @@
     border-radius: 4px;
     cursor: pointer;
 }
+.purchase-button p{
+    background-color:#D9D9D9;
+    border-radius: 4px;
+    text-align: center;
+}
 
 .item-description p{
     font-size: 12px;
@@ -94,11 +99,12 @@
     margin: 20px;
 }
 .item-information__table td{
-    padding: 0 10px;
+    padding: 0;
 }
 
-.item-information__table_category{
+.item-information__table_category span{
     background-color: #D9D9D9;
+    padding: 0 5px;
     border-radius: 10px;
 }
 
