@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(ConditionsTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
 
         User::factory()->create([
            //

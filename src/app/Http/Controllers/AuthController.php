@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Illuminate\Auth\Events\Registered;
@@ -30,7 +31,6 @@ class AuthController extends Controller
     {
         $request->merge(['username' => $request->email,]);
         event(new Registered($user = $creator->create($request->all())));
-        // $this->guard->login($user);
         Auth::login($user);
         return app(RegisterResponse::class);
     }
