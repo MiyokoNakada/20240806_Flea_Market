@@ -7,7 +7,6 @@ use Laravel\Fortify\Contracts\LogoutResponse;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Fortify;
@@ -19,7 +18,6 @@ use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Features;
-use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use App\Http\Requests\AuthRequest;
 
 class AuthController extends Controller
@@ -70,7 +68,6 @@ class AuthController extends Controller
             Features::enabled(Features::twoFactorAuthentication()) ? RedirectIfTwoFactorAuthenticatable::class : null,
             AttemptToAuthenticate::class,
             PrepareAuthenticatedSession::class,
-            // EnsureEmailIsVerified::class,
         ]));
     }
 

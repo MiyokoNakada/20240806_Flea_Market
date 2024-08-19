@@ -28,8 +28,8 @@
 <div class="index-inner">
     <div class="index-button">
         <div class="index-button-inner">
-            <button><a href="/">おすすめ</a></button>
-            <button><a href="/myfavourite">マイリスト</a></button>
+            <button><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">おすすめ</a></button>
+            <button><a href="/myfavourite" class="{{ request()->is('myfavourite') ? 'active' : '' }}">マイリスト</a></button>
         </div>
     </div>
 
