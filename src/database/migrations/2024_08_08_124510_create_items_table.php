@@ -19,9 +19,8 @@ return new class extends Migration
             $table->boolean('sold')->default(false);
             $table->string('image',255)->nullable();
             $table->text('description')->nullable();
-            // $table->foreignID('category_id')->constrained();
             $table->foreignID('condition_id')->constrained();
-            $table->foreignID('user_id')->constrained();
+            $table->foreignID('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

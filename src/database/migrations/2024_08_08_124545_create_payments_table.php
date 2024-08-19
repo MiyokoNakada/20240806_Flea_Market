@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignID('order_id')->constrained();
+            $table->foreignID('order_id')->constrained()->onDelete('cascade');
             $table->enum('payment_method',['credit_card', 'convenience', 'bank_transfer']);
             $table->string('status', 255);
             $table->timestamps();

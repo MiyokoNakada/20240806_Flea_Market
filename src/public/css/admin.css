@@ -1,0 +1,86 @@
+.admin_inner{
+    width: 40%;
+    margin: 20px auto;
+}
+
+.admin_inner h2{
+    text-align: center;
+    margin: 40px 0 ;
+}
+
+.email{
+    width: 100%;
+}
+.email *{
+    width: 100%;
+}
+
+.email__form-item input{
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.email__form-item textarea{
+    padding: 5px;
+}
+
+.email__form-item button{
+    height: 30px;
+    color: white;
+    background-color: #FF5555;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.admin_user,
+.admin_comment{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px 0 ;
+}
+.admin_user a,
+.admin_comment a{
+    text-decoration: none;
+}
+
+
+/* ユーザー管理用ページ、コメント管理用ページ */
+.comment_management,
+.user_management{
+    width: 50%;
+    margin: 20px auto;
+}
+
+/* .comment_management h4,
+.user_management h4{
+    width: fit-content;
+    border: #5F5F5F dotted 1px;
+    border-radius: 5px;
+    padding: 0 10px ;
+} */
+
+.user_search{
+    margin-bottom: 50px;
+}
+.user_search form{
+    margin-left: 20px;
+}
+.user_search input{
+    width: 60%;
+    height: 30px;
+}
+
+.user_list__table{
+    margin-left: 20px;
+    width: 80%;
+}
+.user_list__table td:not(:last-child){
+    height: 30px;
+    padding-right: 40px;
+}
+.user_list__table tr:not(:last-child){
+    border-bottom: #5F5F5F solid 1px;
+}
