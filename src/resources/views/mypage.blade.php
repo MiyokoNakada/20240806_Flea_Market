@@ -28,8 +28,8 @@
 
     <div class="mypage-button">
         <div class="mypage-button-inner">
-            <button><a href="/mypage">出品した商品</a></button>
-            <button><a href="/mypage/bought_items">購入した商品</a></button>
+            <button><a href="/mypage" class="{{ request()->is('mypage') ? 'active' : '' }}">出品した商品</a></button>
+            <button><a href="/mypage/bought_items" class="{{ request()->is('mypage/bought_items') ? 'active' : '' }}">購入した商品</a></button>
         </div>
     </div>
     <div class="items">
