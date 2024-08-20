@@ -9,6 +9,11 @@
         <form class="search__form" action="/item/search" method="post">
             @csrf
             <input class="search__option" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
+            <div class="error">
+                @error('keyword')
+                {{ $message }}
+                @enderror
+            </div>
         </form>
     </div>
 

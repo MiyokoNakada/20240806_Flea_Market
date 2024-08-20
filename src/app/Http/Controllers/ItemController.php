@@ -10,6 +10,8 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Condition;
 use App\Models\Favourite;
+use App\Http\Requests\SearchRequest;
+use App\Http\Requests\CommentRequest;
 
 
 class ItemController extends Controller
@@ -35,7 +37,7 @@ class ItemController extends Controller
     }
 
     //商品検索機能
-    public function search(Request $request)
+    public function search(SearchRequest $request)
     {
         $query = Item::query();
         if ($request->filled('keyword')) {
@@ -55,15 +57,15 @@ class ItemController extends Controller
             ->withCount(['favourites','comments'])
             ->find($item_id);
 
-        $sellerId = $item->user_id; // 出品者のuser_id
+        $sellerId = $item->user_id; 
 
-        $isFavourited = Auth::check() ? Favourite::where('user_id', Auth::id())->where('item_id', $item_id)->exists() : false; // お気に入りの情報を取得
+        $isFavourited = Auth::check() ? Favourite::where('user_id', Auth::id())->where('item_id', $item_id)->exists() : false; 
 
         return view('detail', compact('item', 'categories', 'conditions', 'sellerId', 'isFavourited'));
     }
 
     //コメント投稿機能
-    public function comment(Request $request, $item_id)
+    public function comment(CommentRequest $request, $item_id)
     {
 
         $user_id = Auth::user()->id;

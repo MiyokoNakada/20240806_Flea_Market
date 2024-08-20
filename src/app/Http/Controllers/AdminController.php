@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Comment;
+use App\Mail\AdminMail;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\EmailRequest;
 
 class AdminController extends Controller
 {
@@ -18,10 +21,8 @@ class AdminController extends Controller
     public function userManagement()
     {
         $users = User::all();
-
         return view('admin_user', compact('users'));
     }
-
     //ユーザー削除機能
     public function deleteUser(Request $request){
         $user_id = $request->id;
@@ -35,15 +36,25 @@ class AdminController extends Controller
     public function commentManagement()
     {
         $comments = Comment::with('user', 'item')->get();
-
         return view('admin_comment', compact('comments'));
-    }
-    
+    }    
     //コメント削除機能
     public function deleteComment(Request $request){
-        $comment_id = $request->comment_id;
-        $comment = Comment::find($comment_id)->delete;
+        $comment_id = $request->id;
+        Comment::find($comment_id)->delete();
 
-        return redirect()->route('detail')->with('message', 'コメントが削除されました。');
+        return redirect('/admin/comment')->with('message', 'コメントが削除されました。');
+    }
+
+    //メール送信機能
+    public function sendEmail(EmailRequest $request)
+    {
+        $emails = [
+            'title' => $request->title,
+            'body' => $request->body
+        ];
+        Mail::to($request->email_address)->send(new AdminMail($emails));
+
+        return redirect('/admin')->with('message', 'メールが送信されました');
     }
 }

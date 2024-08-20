@@ -8,6 +8,7 @@ use App\Models\Item;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Profile;
+use App\Http\Requests\ProfileRequest;
 
 class PurchaseController extends Controller
 {
@@ -48,7 +49,7 @@ class PurchaseController extends Controller
     }
 
     //住所更新機能
-    public function updateAddress(Request $request)
+    public function updateAddress(ProfileRequest $request)
     {
         session([
             'postal_code' => $request->postal_code,

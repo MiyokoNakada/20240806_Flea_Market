@@ -24,16 +24,16 @@
             <form class="email__form" action="/admin/send_email" method="POST">
                 @csrf
                 <div class="email__form-item">
-                    <input type="email" name="email_address" placeholder="メールアドレス" value="{{ old('email_address') }}">
                     <span class="error">@error('email_address'){{ $message }}@enderror</span>
+                    <input type="email" name="email_address" placeholder="メールアドレス" value="{{ old('email_address') }}">
                 </div>
                 <div class="email__form-item">
-                    <input type="text" name="title" placeholder="タイトル" value="{{ old('title') }}">
                     <span class="error">@error('title'){{ $message }}@enderror</span>
+                    <input type="text" name="title" placeholder="タイトル" value="{{ old('title') }}">
                 </div>
                 <div class="email__form-item">
-                    <textarea name="body" rows="5" cols="70" placeholder="本文"></textarea>
                     <span class="error">@error('body'){{ $message }}@enderror</span>
+                    <textarea name="body" rows="5" cols="70" placeholder="本文"></textarea>
                 </div>
                 <div class="email__form-item">
                     <button type="submit">送信</button>
