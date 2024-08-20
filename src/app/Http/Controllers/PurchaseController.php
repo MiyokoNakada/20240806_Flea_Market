@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Order;
-use App\Models\User;
-use App\Models\Profile;
+use App\Models\Payment;
+use Stripe\Stripe;
+use Stripe\Customer;
+use Stripe\Charge;
 use App\Http\Requests\ProfileRequest;
 
 class PurchaseController extends Controller
@@ -16,12 +18,7 @@ class PurchaseController extends Controller
     public function purchase($item_id)
     {
         $item = Item::find($item_id);
-        $payment_methods_jp = [
-            'credit_card' => 'クレジットカード',
-            'convenience' => 'コンビニ払い',
-            'bank_transfer' => '銀行振込'
-        ];
-        $payment_method = $payment_methods_jp[session('payment_method')] ?? 'クレジットカード';
+        $payment_method = $this->paymentMethodInJapanese(session('payment_method'));
 
         return view('purchase', compact('item', 'payment_method'));
     }
@@ -67,7 +64,8 @@ class PurchaseController extends Controller
         $postal_code = session('postal_code');
         $address = session('address');
         $building = session('building');
-        $payment_method = session('payment_method');
+        $original_payment_method = session('payment_method', 'credit_card');
+        $payment_method = $this->paymentMethodInJapanese(session('payment_method'));
 
         if ($postal_code && $address) {
         } else {
@@ -90,10 +88,43 @@ class PurchaseController extends Controller
         $order->building = $building;
         $order->save();
 
+        Payment::create(['order_id' => $order->id, 'payment_method' => $original_payment_method]);
+
         Item::find($item_id)->update(['sold' => true]);
 
-        $request->session()->forget(['postal_code', 'address', 'building']);
+        $request->session()->forget(['postal_code', 'address', 'building', 'payment_method']);
 
         return view('payment', compact('order', 'payment_method'));
     }
+
+    //決済機能(Stripe)
+    public function payment(Request $request)
+    {
+        $payment = Payment::where('order_id', $request->order_id)->first();
+        
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        Charge::create([
+            'amount' => $payment->order->item->price,
+            'currency' => 'jpy',
+            'source' => $request->stripeToken,
+            'description' => 'Test payment',
+        ]);
+
+        Payment::where('order_id', $request->order_id)->update(['status' => true]);
+        
+        return view('payment_complete');
+    }
+
+    // 日本語表記への変換
+    protected function paymentMethodInJapanese($paymentMethod)
+    {
+        $payment_methods_jp = [
+            'credit_card' => 'クレジットカード',
+            'convenience' => 'コンビニ払い',
+            'bank_transfer' => '銀行振込'
+        ];
+
+        return $payment_methods_jp[$paymentMethod] ?? 'クレジットカード';
+    }
+
 }
