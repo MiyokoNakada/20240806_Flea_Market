@@ -14,14 +14,13 @@
 <div class="user_management">
     <h3>ユーザー管理</h3>
 
-{{-- <div class="user_search">
+    {{-- <div class="user_search">
         <h4>ユーザー検索</h4>
         <form class="search__form" action="/admin/user/search" method="post">
             @csrf
             <input class="search__option" type="text" name="keyword" placeholder="名前もしくはユーザー名" value="{{ request('keyword') }}">
     </form>
-</div>
---}}
+</div> --}}
 
 <div class="user_list">
     <h4>ユーザー一覧</h4>
@@ -39,14 +38,12 @@
                 <form action="/admin/user/delete" method="post">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" onclick="return confirm('このコメントを削除してもよろしいですか？')">削除</button>
+                    <button type="submit" onclick="return confirm('このユーザーを削除してもよろしいですか？')">削除</button>
                     <input type="hidden" name="id" value="{{ $user->id }}">
                 </form>
-
             </td>
         </tr>
         @endforeach
-
     </table>
 </div>
 </div>

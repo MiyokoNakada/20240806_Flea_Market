@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Item;
 use App\Models\Profile;
 use App\Models\Order;
+use App\Http\Requests\ProfileRequest;
 
 class MypageController extends Controller
 {
@@ -39,7 +40,7 @@ class MypageController extends Controller
     }
 
     //プロフィール更新機能
-    public function updateProfile(Request $request)
+    public function updateProfile(ProfileRequest $request)
     {        
         $user_id = Auth::user()->id;
         $form = $request->all();

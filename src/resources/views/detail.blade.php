@@ -121,6 +121,11 @@
                         <textarea name="comment" id="comment" cols="40" rows="6">{{old('description')}}</textarea>
                         <button type="submit">コメントを送信する</button>
                     </form>
+                    <div class="error">
+                        @error('comment')
+                        {{ $message }}
+                        @enderror
+                    </div>
                 </div>
             </div>
         </div>

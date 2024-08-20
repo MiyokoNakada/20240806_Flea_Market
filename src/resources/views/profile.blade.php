@@ -24,6 +24,11 @@
                 <input type="file" id="upload" name="profile_image" accept="image/*" onchange="previewImage(event)">
                 <img id="imagePreview" class="profile-form__image-preview" src="" alt="">
                 <label for="upload" class="profile-form__image-label">画像を選択する</label>
+                <div class="error">
+                    @error('profile_image')
+                    {{ $message }}
+                    @enderror
+                </div>
             </div>
             <div class="profile-form__item">
                 <label for="name">ユーザー名</label>
