@@ -140,3 +140,19 @@ h2{
     width: 70%;
     margin: auto;
 }
+
+/* 決済ページ、決済完了ページ */
+.payment-inner{
+    width: 40%;
+    margin:50px auto;
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.payment_complete{
+    width: 40%;
+    margin:50px auto;
+}
