@@ -7,9 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Payment;
-use Stripe\Stripe;
-use Stripe\Customer;
-use Stripe\Charge;
 use App\Http\Requests\ProfileRequest;
 
 class PurchaseController extends Controller
@@ -97,23 +94,6 @@ class PurchaseController extends Controller
         return view('payment', compact('order', 'payment_method'));
     }
 
-    //決済機能(Stripe)
-    public function payment(Request $request)
-    {
-        $payment = Payment::where('order_id', $request->order_id)->first();
-        
-        Stripe::setApiKey(env('STRIPE_SECRET'));
-        Charge::create([
-            'amount' => $payment->order->item->price,
-            'currency' => 'jpy',
-            'source' => $request->stripeToken,
-            'description' => 'Test payment',
-        ]);
-
-        Payment::where('order_id', $request->order_id)->update(['status' => true]);
-        
-        return view('payment_complete');
-    }
 
     // 日本語表記への変換
     protected function paymentMethodInJapanese($paymentMethod)

@@ -5,10 +5,10 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\AdminController;
-
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -41,7 +41,8 @@ Route::middleware(['auth', 'verified'])->group(
         Route::post('/purchase/address', [PurchaseController::class, 'updateAddress']);
         Route::get('/purchase/{item_id}', [PurchaseController::class, 'purchase'])->name('purchase');
         Route::post('/purchase/{item_id}', [PurchaseController::class, 'completeOrder']);
-        Route::post('/purchase/{item_id}/payment', [PurchaseController::class, 'payment']);
+
+        Route::post('/purchase/{item_id}/payment', [PaymentController::class, 'payment']);
 
         Route::get('/sell', [SellController::class, 'sellerPage']);
         Route::post('/sell', [SellController::class, 'sell']);
