@@ -45,9 +45,15 @@ class MypageController extends Controller
         $user_id = Auth::user()->id;
         $form = $request->all();
         $form['user_id'] = $user_id;
-        
+          
+        $profile = Profile::where('user_id', $user_id)->first();
+        if ($profile) {
+            $profile->update($form);
+        } else {
+            $profile = Profile::create($form);
+        }
         User::find($user_id)->update(['name' => $form['name']]);
-        $profile = Profile::create($form);
+
         if ($request->hasFile('profile_image')) {
             $imageFile = $request->file('profile_image');
             $imageName = $imageFile->getClientOriginalName();
