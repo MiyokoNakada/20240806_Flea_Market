@@ -84,7 +84,7 @@ class PurchaseController extends Controller
         $order->address = $address;
         $order->building = $building;
         $order->save();
-
+        
         Payment::create(['order_id' => $order->id, 'payment_method' => $original_payment_method]);
 
         Item::find($item_id)->update(['sold' => true]);

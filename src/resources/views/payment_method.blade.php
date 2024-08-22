@@ -21,7 +21,6 @@
             <input type="hidden" name="item_id" value="{{$item_id}}">
             <div class="payment-method-form__item">
                 <select name="payment_method">
-                    <option value=""></option>
                     <option value="credit_card">クレジットカード</option>
                     <option value="convenience">コンビニ支払い</option>
                     <option value="bank_transfer">銀行振込</option>
