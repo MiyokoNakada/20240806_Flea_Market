@@ -21,16 +21,17 @@
         <form action="{{ url('/purchase/' . $order->item->id . '/payment' ) }}" method="POST">
             @csrf
             <input type="hidden" name="order_id" value="{{ $order->id }}">
-            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            <button type="submit">決済をする</button>
+            {{-- <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="{{ env('STRIPE_KEY') }}"
-                data-amount="{{ $order->item->price }}"
-                data-name="Stripe Demo"
-                data-label="決済をする"
-                data-description="Stripe Demo"
-                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                data-locale="auto"
-                data-currency="JPY">
-            </script>
+            data-amount="{{ $order->item->price }}"
+            data-name="Stripe Demo"
+            data-label="決済をする"
+            data-description="Stripe Demo"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto"
+            data-currency="JPY">
+            </script> --}}
         </form>
     </div>
 </div>

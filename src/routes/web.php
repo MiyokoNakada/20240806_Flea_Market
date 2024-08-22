@@ -43,6 +43,7 @@ Route::middleware(['auth', 'verified'])->group(
         Route::post('/purchase/{item_id}', [PurchaseController::class, 'completeOrder']);
 
         Route::post('/purchase/{item_id}/payment', [PaymentController::class, 'payment']);
+        Route::get('/purchase/payment/complete', [PaymentController::class, 'paymentComplete']);
 
         Route::get('/sell', [SellController::class, 'sellerPage']);
         Route::post('/sell', [SellController::class, 'sell']);
