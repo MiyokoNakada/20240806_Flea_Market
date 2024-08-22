@@ -15,7 +15,6 @@
 
 <div class="mypage-inner">
     <div class="message">{{ session('message') }}</div>
-
     <div class="user-info">
         @if($user->profile && $user->profile->profile_image)
         <img src="{{ asset('storage/image/' . $user->profile->profile_image) }}" alt="">
