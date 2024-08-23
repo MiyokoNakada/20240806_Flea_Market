@@ -11,6 +11,11 @@ h2{
 .auth-form__item{
     margin-bottom: 40px;
 }
+@media screen and (max-width: 768px) {
+  .auth-form__item{
+    margin-bottom: 20px;
+  }
+}
 
 .auth-form__item label{
     display: block;

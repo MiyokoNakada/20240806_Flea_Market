@@ -23,7 +23,7 @@ class SellRequest extends FormRequest
     {
         return [
             'image' => ' required | image | mimes:jpg,jpeg,png,gif | max:2048',
-            'category' => 'required',
+            'categories' => 'required',
             'condition_id' => 'required',
             'name' => 'required | string | max:191',
             'brand' => 'nullable | string | max:191',
@@ -40,7 +40,7 @@ class SellRequest extends FormRequest
             'image.image' => '指定されたファイルが画像ではありません',
             'image.mimes' => '指定された拡張子(jpg/jpeg/png/gif)ではありません',
             'image.max' => 'ファイルサイズは2MB以内にしてください',
-            'category.required' => 'カテゴリーを選択してください',
+            'categories.required' => 'カテゴリーを選択してください',
             'condition_id.required' => '商品の状態を選択してください',
             'name.required' => '商品名を入力してください',
             'name.string' => '文字列で入力してください',

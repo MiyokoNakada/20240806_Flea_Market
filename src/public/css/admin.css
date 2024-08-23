@@ -2,6 +2,11 @@
     width: 40%;
     margin: 20px auto;
 }
+@media screen and (max-width: 768px){
+    .admin_inner{
+        width: 80%;
+    }
+}
 
 .admin_inner h2{
     text-align: center;
@@ -50,19 +55,19 @@
 /* ユーザー管理用ページ、コメント管理用ページ */
 .comment_management,
 .user_management{
-    width: 50%;
+    width: 60%;
     margin: 20px auto;
 }
 
-/* .comment_management h4,
+.comment_management h4,
 .user_management h4{
     width: fit-content;
     border: #5F5F5F dotted 1px;
     border-radius: 5px;
     padding: 0 10px ;
-} */
+}
 
-.user_search,
+/* .user_search,
 .comment_search{
     margin-bottom: 50px;
 }
@@ -74,12 +79,12 @@
 .comment_search input{
     width: 60%;
     height: 30px;
-}
+} */
 
 .user_list__table,
 .comment_list__table{
     margin-left: 20px;
-    width: 80%;
+    width: 100%;
 }
 .user_list__table td:not(:last-child),
 .comment_list__table td:not(:last-child){
@@ -89,4 +94,14 @@
 .user_list__table tr:not(:last-child),
 .comment_list__table tr:not(:last-child){
     border-bottom: #5F5F5F solid 1px;
+}
+@media screen and (max-width: 768px){
+    .comment_management,
+    .user_management{   
+        width: 80%;
+    }
+    .user_list__table td:not(:last-child),
+    .comment_list__table td:not(:last-child){
+        padding-right: 20px;
+    }
 }

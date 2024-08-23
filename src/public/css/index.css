@@ -11,7 +11,6 @@
     left: 80px;
     display: flex;
 }
-
 .index-button button{
     background-color: white;
     border: none;
@@ -22,10 +21,18 @@
 .index-button a{
     text-decoration: none;
 }
-
 .active{
     color: #FF5555;
 }
+
+@media screen and (max-width: 768px){
+    .index-button button{
+        font-size: 16px;
+        padding: 0 30px 0 20px;
+    }
+}
+
+
 
 
 /* item一覧 */

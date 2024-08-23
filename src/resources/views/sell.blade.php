@@ -42,7 +42,7 @@
                     </div>
                     @foreach ($categories as $category)
                     <input class="sell-form__checkbox" type="checkbox" name="categories[]" value="{{ $category->id }}">
-                    <label for="category-{{ $category->id }}">{{ $category->category_name }}</label>
+                    <label for="category->{{ $category->id }}">{{ $category->category_name }}</label>
                     @endforeach
                 </div>
                 <h4>商品の状態</h4>
