@@ -3,13 +3,25 @@
     display: flex;
     margin: 60px 80px;
 }
-
 .purchase-inner-left{
-    width: 60%;
+    width: 60vw;
     margin-right: 100px;
 }
 .purchase-inner-right{
-    width: 22%;
+    width: 25vw;
+}
+
+@media screen and (max-width: 768px){
+    .purchase{
+        margin: 30px 40px;
+    }
+    .purchase-inner-left{
+        width: 60vw;
+        margin-right: 10px;
+    }
+    .purchase-inner-right{
+        width: 40vw;
+    }
 }
 
 .item-info{
@@ -35,6 +47,16 @@
     justify-content: space-between;
     margin-bottom: 20px;
     padding-right: 100px;
+}
+
+@media screen and (max-width: 768px){
+    .item-info__right{
+        padding-left: 10px;
+    }
+    .payment-method,
+    .delivery-address{
+        padding-right: 20px;
+    }
 }
 
 .payment-method p,
@@ -81,6 +103,19 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 768px){
+    .purchase-recap{
+        height: 120px;
+        padding: 10px;
+    }
+    .purchase-recap__table{
+        width: 100%;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 30px;
+    }
+}
+
 
 /* 住所変更ページ、支払い方法変更ページ */
 .delivery-address-inner,
@@ -97,6 +132,17 @@ h2{
 .delivery-address-form__item,
 .payment-method-form__item{
     margin-bottom: 40px;
+}
+@media screen and (max-width: 768px){
+    .delivery-address-inner,
+    .payment-method-inner{
+        width: 70%;
+        margin: 30px auto;
+    }
+    .delivery-address-form__item,
+    .payment-method-form__item{
+        margin-bottom: 20px;
+    }   
 }
 
 .delivery-address-form__item label{
@@ -127,19 +173,6 @@ h2{
     cursor: pointer;
 }
 
-.return-link{
-    text-align: center;
-    margin-top: 20px;
-}
-.return-link a{
-    text-decoration: none;
-    color:#0073CC ;
-}
-
-.payment-method-form {
-    width: 70%;
-    margin: auto;
-}
 
 /* 決済ページ、決済完了ページ */
 .payment-inner{
@@ -155,4 +188,13 @@ h2{
 .payment_complete{
     width: 40%;
     margin:50px auto;
+}
+
+@media screen and (max-width: 768px){
+    .payment-inner{
+        width: 60%;
+    }
+    .payment_complete{
+        width: 80%;
+    }
 }
