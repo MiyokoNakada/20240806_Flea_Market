@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Item;
 use App\Models\Category;
 use App\Models\Condition;
-use App\Http\Requests\SellRequest; 
+use App\Http\Requests\SellRequest;
 
 
 class SellController extends Controller
@@ -16,9 +17,9 @@ class SellController extends Controller
     public function sellerPage()
     {
         $categories = Category::all();
-        $conditions = Condition::all(); 
+        $conditions = Condition::all();
 
-        return view('sell', compact('categories', 'conditions') );
+        return view('sell', compact('categories', 'conditions'));
     }
 
     //出品機能
@@ -32,8 +33,14 @@ class SellController extends Controller
         if ($request->hasFile('image')) {
             $imageFile = $request->file('image');
             $imageName = $imageFile->getClientOriginalName();
-            $imageFile->storeAs('public/image' , $imageName);
-            $form['image'] = $imageName;
+            if (app()->environment('local')) {
+                $imageFile->storeAs('public/image', $imageName);
+                $form['image'] = $imageName;
+            } else {
+                Storage::disk('s3')->put('image/' . $imageName, file_get_contents($imageFile));
+                Storage::disk('s3')->setVisibility('image/' . $imageName, 'public');
+                $form['image'] = $imageName;
+            }
             Item::find($item->id)->update($form);
         }
         $item->categories()->sync($request->categories);
