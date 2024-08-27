@@ -16,7 +16,11 @@
     <div class="purchase-inner-left">
         <div class="item-info">
             <div class="item-info__left">
-                <img src="{{ asset('storage/image/' . $item->image) }}" alt="商品画像">
+                @if(app()->environment('local'))
+                    <img src="{{ asset('storage/image/' . $item->image) }}" alt="商品画像">
+                @else
+                    <img src="{{ Storage::disk('s3')->url('image/'.$item->image) }}" alt="商品画像">
+                @endif
             </div>
             <div class="item-info__right">
                 <h3>{{ $item->name }}</h3>
