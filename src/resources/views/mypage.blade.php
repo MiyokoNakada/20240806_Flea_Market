@@ -17,7 +17,11 @@
     <div class="message">{{ session('message') }}</div>
     <div class="user-info">
         @if($user->profile && $user->profile->profile_image)
-        <img src="{{ asset('storage/image/' . $user->profile->profile_image) }}" alt="">
+            @if(app()->environment('local'))
+            <img src="{{ asset('storage/image/' . $user->profile->profile_image) }}" alt="">
+            @else
+            <img src="{{ Storage::disk('s3')->url('image/' . $user->profile->profile_image) }}" alt="">
+            @endif
         @else
         <img src="" alt="">
         @endif
@@ -36,7 +40,11 @@
         <div class="item-cards">
             <div class="item-cards__img">
                 <a href="{{ url('/item/' . $item->id) }}">
-                    <img src="{{ asset('storage/image/' . $item->image) }}" alt="">
+                    @if(app()->environment('local'))
+                        <img src="{{ asset('storage/image/' . $item->image) }}" alt="">
+                    @else
+                        <img src="{{ Storage::disk('s3')->url('image/'.$item->image) }}" alt="">
+                    @endif
                 </a>
             </div>
             <div class="item-cards__label">

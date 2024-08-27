@@ -31,7 +31,11 @@
 <div class="detail">
     <div class="detail-inner-left">
         <div class="item-image">
-            <img src="{{ asset('storage/image/' . $item->image) }}" alt="商品画像">
+            @if(app()->environment('local'))
+                <img src="{{ asset('storage/image/' . $item->image) }}" alt="商品画像">
+            @else
+                <img src="{{ Storage::disk('s3')->url('image/'.$item->image) }}" alt="商品画像">
+            @endif
         </div>
     </div>
 
