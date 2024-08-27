@@ -1,0 +1,26 @@
+services:
+  nginx:
+    image: nginx:1.25.1
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./src:/var/www/
+    depends_on:
+      - php
+
+  php:
+    build: ./docker/php
+    volumes:
+      - ./src:/var/www/
+
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=RDS_endpoint
+      - PMA_USER=RDS_user
+      - PMA_PASSWORD=RDS_password
+    ports:
+      - 8080:80
