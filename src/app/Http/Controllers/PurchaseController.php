@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Payment;
-use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\AddressRequest;
 
 class PurchaseController extends Controller
 {
@@ -43,7 +43,7 @@ class PurchaseController extends Controller
     }
 
     //住所更新機能
-    public function updateAddress(ProfileRequest $request)
+    public function updateAddress(AddressRequest $request)
     {
         session([
             'postal_code' => $request->postal_code,

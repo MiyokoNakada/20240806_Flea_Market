@@ -15,12 +15,22 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // ルート管理者の作成
+        // ルート管理者
         $param = [
             'name' => 'admin',
             'email' => 'admin@email.com',
             'password' => Hash::make('admin_pass'),
             'role' => 'admin',
+            'email_verified_at' => Carbon::now(),
+        ];
+        DB::table('users')->insert($param);
+
+        // 一般ユーザー
+        $param = [
+            'name' => 'test',
+            'email' => 'test@email.com',
+            'password' => Hash::make('test_pass'),
+            'role' => 'user',
             'email_verified_at' => Carbon::now(),
         ];
         DB::table('users')->insert($param);
