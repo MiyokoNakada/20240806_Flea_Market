@@ -9,7 +9,8 @@
         "laravel/cashier": "^15.4",
         "laravel/fortify": "^1.22",
         "laravel/framework": "^11.9",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "league/flysystem-aws-s3-v3": "~3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
