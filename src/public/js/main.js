@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 },
-                // お気に入り削除の場合に body を送信しない
                 body: method === 'POST' ? JSON.stringify({ item_id: itemId }) : null
             })
             .then(response => response.json())
