@@ -2,33 +2,26 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Item;
-use Database\Seeders\CategoriesTableSeeder;
-use Database\Seeders\ConditionsTableSeeder;
-use Database\Seeders\ItemsTableSeeder;
-use Database\Seeders\UsersTableSeeder;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage; 
 
 class ItemTest extends TestCase
 {
-    use RefreshDatabase;
-
-    /** @test */
+    //商品一覧取得
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_retrieve_item_list()
     {
         Storage::fake('local');
 
-        $this->seed(ConditionsTableSeeder::class);
-        $this->seed(CategoriesTableSeeder::class);
-        $this->seed(UsersTableSeeder::class);
-        $this->seed(ItemsTableSeeder::class);
+        $items = Item::where('sold', false)->get();
 
         $response = $this->get('/');
         $response->assertStatus(200);
         $response->assertSee(Item::first()->name);
-    }
 
-
+        foreach ($items as $item) {
+            $response->assertSee($item->name);
+        }
+    }    
 }
