@@ -36,8 +36,6 @@ jobs:
       - run:
           name: Setup Docker
           command: |
-            # docker-compose -f docker-compose.dev.yml up mysql
-            # docker-compose -f docker-compose.dev.yml up -d php
             docker-compose -f /home/circleci/project/docker-compose.dev.yml up -d
             docker-compose exec -T php composer install
       - run:
