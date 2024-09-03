@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Check if docker-compose file exists
           command: ls -l docker-compose.dev.yml
+      - run:
+          name: Print working directory
+          command: pwd
       - setup_remote_docker:
           version: docker23
           docker_layer_caching: true
