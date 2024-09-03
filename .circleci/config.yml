@@ -5,12 +5,12 @@ jobs:
     docker:
       - image: cimg/php:8.2-node
         environment:
-            APP_ENV: test
-            DB_CONNECTION: mysql
-            DB_HOST: mysql
-            DB_DATABASE: demo_test
-            DB_USERNAME: 'root'
-            DB_PASSWORD: 'root'
+          APP_ENV: test
+          DB_CONNECTION: mysql
+          DB_HOST: mysql
+          DB_DATABASE: demo_test
+          DB_USERNAME: 'root'
+          DB_PASSWORD: 'root'
       - image: cimg/mysql:8.0
         environment:
           MYSQL_ROOT_PASSWORD: root
@@ -20,32 +20,28 @@ jobs:
 
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10
-          docker_layer_caching: true
       - run:
           name: Install Docker Compose
           command: |
             curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
             chmod +x /usr/local/bin/docker-compose
       - run:
-          name: Setup docker
+          name: Setup Docker
           command: |
             docker-compose -f docker-compose.dev.yml up --build -d
-            docker-compose -f docker-compose.dev.yml exec -T php composer install
+            docker-compose exec -T php composer install
       - run:
           name: Setup Laravel
           command: |
-            docker-compose -f docker-compose.dev.yml exec -T php cp .env.example .env
-            docker-compose -f docker-compose.dev.yml exec -T php php artisan key:generate
-       - run:
-          name: Run Test
+            docker-compose exec -T php cp .env.example .env
+            docker-compose exec -T php php artisan key:generate
+      - run:
+          name: Run Tests
           command: |
-            docker-compose -f docker-compose.dev.yml exec -T php vendor/bin/phpunit
+            docker-compose exec -T php vendor/bin/phpunit
 
 workflows:
   version: 2
   test_and_deploy:
     jobs:
       - test
-
