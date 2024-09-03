@@ -18,6 +18,9 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: Update apt-get
+          command: apt-get update
       - setup_remote_docker:
           version: docker23
           docker_layer_caching: true
