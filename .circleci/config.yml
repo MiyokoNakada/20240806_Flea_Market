@@ -28,9 +28,6 @@ jobs:
             chmod +x /tmp/docker-compose
             docker-compose --version
       - run:
-          name: Check Docker Compose Version
-          command: docker-compose --version
-      - run:
           name: Setup Docker
           command: |
             # docker-compose -f docker-compose.dev.yml up mysql
