@@ -1,0 +1,27 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/php:8.2-node
+        environment:
+          DB_HOST: 127.0.0.1
+          DB_DATABASE: laravel_db
+          DB_USERNAME: laravel_user
+          DB_PASSWORD: laravel_pass
+      - image: circleci/mysql:8.0
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel_db
+          MYSQL_USER: laravel_user
+          MYSQL_PASSWORD: laravel_pass
+
+    steps:
+      - checkout
+      - run: composer install
+      - run: npm install
+      - run: cp .env.example .env
+      - run: php artisan key:generate
+      - run: php artisan migrate --force
+      - run: npm run dev
+      - run: vendor/bin/phpunit
