@@ -22,11 +22,14 @@ jobs:
           version: docker23
           docker_layer_caching: true
       - run:
+          name: Check Directory Permissions
+          command: ls -ld /usr/local/bin
+      - run:
           name: Install Docker Compose
           command: |
-            curl -L https://github.com/docker/compose/releases/download/2.26.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-            chmod 755 /usr/local/bin/docker-compose
-            docker-compose --version
+            curl -L https://github.com/docker/compose/releases/download/2.26.1/docker-compose-`uname -s`-`uname -m` > /tmp/docker-compose
+            chmod +x /tmp/docker-compose
+            /tmp/docker-compose --version
       - run:
           name: Check Docker Compose Version
           command: docker-compose --version
