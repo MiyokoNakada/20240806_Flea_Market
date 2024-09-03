@@ -30,6 +30,7 @@ jobs:
       - run:
           name: Setup Docker
           command: |
+            docker-compose -f docker-compose.dev.yml build
             docker-compose -f docker-compose.dev.yml up mysql
             docker-compose -f docker-compose.dev.yml up php
             docker-compose exec -T php composer install
