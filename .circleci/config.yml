@@ -25,3 +25,9 @@ jobs:
       - run: php artisan migrate --force
       - run: npm run dev
       - run: vendor/bin/phpunit
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
