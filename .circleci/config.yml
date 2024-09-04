@@ -19,37 +19,22 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Check if docker-compose file exists
-          command: ls -l docker-compose.dev.yml
-      - run:
-          name: Print working directory
-          command: pwd
-      - setup_remote_docker:
-          version: docker23
-          docker_layer_caching: true
-      - run:
-          name: Install Docker Compose
+          name: Install Dependencies
           command: |
-            curl -L https://github.com/docker/compose/releases/download/2.26.1/docker-compose-`uname -s`-`uname -m` > /tmp/docker-compose
-            chmod +x /tmp/docker-compose
-            docker-compose --version
+            sudo apt-get update
+            sudo apt-get install -y libzip-dev unzip
+            docker-php-ext-install zip pdo_mysql
+          
       - run:
-          name: Setup Docker
-          command: |
-            docker-compose -f /home/circleci/project/docker-compose.dev.yml up -d
-            docker-compose exec -T php composer install
-      - run:
-          name: Setup Laravel
-          command: |
-            docker-compose exec -T php cp .env.example .env
-            docker-compose exec -T php php artisan key:generate
+          name: Install Composer Dependencies
+          command: composer install --no-interaction --prefer-dist --optimize-autoloader
+                   
       - run:
           name: Run Tests
-          command: |
-            docker-compose exec -T php vendor/bin/phpunit
+          command: php artisan test --env=testing 
 
 workflows:
   version: 2
-  test_and_deploy:
+  test:
     jobs:
       - test
