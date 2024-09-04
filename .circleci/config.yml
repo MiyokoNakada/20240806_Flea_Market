@@ -32,7 +32,8 @@ jobs:
           
       - run:
           name: Run Tests
-          command: php artisan test --env=testing 
+          working_directory: ~/project/src
+          command: php artisan test
 
 workflows:
   version: 2
