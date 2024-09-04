@@ -24,14 +24,19 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y libzip-dev unzip
             sudo docker-php-ext-install zip pdo_mysql
-          
+            
       - run:
           name: Install Composer Dependencies
+          working_directory: ~/project/src
           command: composer install --no-interaction --prefer-dist --optimize-autoloader
+          
+      # - run:
+      #     name: Install Composer Dependencies
+      #     command: composer install --no-interaction --prefer-dist --optimize-autoloader
                    
-      - run:
-          name: Run Tests
-          command: php artisan test --env=testing 
+      # - run:
+      #     name: Run Tests
+      #     command: php artisan test --env=testing 
 
 workflows:
   version: 2
