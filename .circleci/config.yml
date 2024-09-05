@@ -45,7 +45,7 @@ jobs:
           working_directory: ~/project/src
           command: |
             php artisan migrate --database=mysql --force
-            php artisan db:seed --class=TestSeeder
+            php artisan db:seed --class=DatabaseSeeder
             php artisan test
 
 workflows:
