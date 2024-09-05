@@ -4,10 +4,17 @@ jobs:
   test:
     docker:
       - image: cimg/php:8.2-node
-      # - image: mysql:8.0
-      #   environment:
-      #     MYSQL_ROOT_PASSWORD: root
-      #     MYSQL_DATABASE: demo_test
+        # environment:
+        #   APP_ENV: test
+        #   DB_CONNECTION: mysql_test
+        #   DB_HOST: 127.0.0.1
+        #   DB_DATABASE: demo_test
+        #   DB_USERNAME: 'root'
+        #   DB_PASSWORD: 'root'
+      - image: mysql:8.0
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: demo_test
 
     steps:
       - checkout
