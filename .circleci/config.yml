@@ -7,9 +7,9 @@ jobs:
       - image: cimg/php:8.2-node
       - image: cimg/mysql:8.0
     environment:
-      - APP_ENV: testing
-      - DB_CONNECTION: circle_test
-      - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+      APP_ENV: testing
+      DB_CONNECTION: circle_test
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
 
     steps:
       - checkout
@@ -30,25 +30,27 @@ jobs:
             sudo apt-get install -y libzip-dev unzip
             sudo docker-php-ext-install zip pdo_mysql
             
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            - v1-dependencies-
+      # - restore_cache:
+      #     keys:
+      #       - v1-dependencies-{{ checksum "composer.json" }}
+      #       - v1-dependencies-
 
       - run:
           name: Install Composer Dependencies
           working_directory: ~/project/src
           command: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - save_cache:
-          paths:
-            - vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
+      # - save_cache:
+      #     paths:
+      #       - vendor
+      #     key: v1-dependencies-{{ checksum "composer.json" }}
      
       - run:
           name: Run Tests
           working_directory: ~/project/src
-          command: php artisan test
+          command: |
+            php artisan storage:link
+            php artisan test
 
 workflows:
   test:
