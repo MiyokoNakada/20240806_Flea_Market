@@ -4,29 +4,22 @@ jobs:
   test:
     docker:
       - image: cimg/php:8.2-node
-        environment:
-          APP_ENV: test
-          DB_CONNECTION: mysql_test
-          DB_HOST: 127.0.0.1
-          DB_DATABASE: demo_test
-          DB_USERNAME: 'root'
-          DB_PASSWORD: 'root'
-      - image: mysql:8.0
-        environment:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: demo_test
+      # - image: mysql:8.0
+      #   environment:
+      #     MYSQL_ROOT_PASSWORD: root
+      #     MYSQL_DATABASE: demo_test
 
     steps:
       - checkout
 
-      - run:
-          name: Wait for MySQL
-          command: |
-            for i in `seq 1 30`; do
-              nc -z mysql 3306 && break
-              echo "Waiting for MySQL..."
-              sleep 1
-            done
+      # - run:
+      #     name: Wait for MySQL
+      #     command: |
+      #       for i in `seq 1 30`; do
+      #         nc -z mysql 3306 && break
+      #         echo "Waiting for MySQL..."
+      #         sleep 1
+      #       done
 
       - run:
           name: Install Dependencies
@@ -43,10 +36,7 @@ jobs:
       - run:
           name: Run Tests
           working_directory: ~/project/src
-          command: |
-            php artisan migrate --database=mysql --force
-            php artisan db:seed --class=DatabaseSeeder
-            php artisan test
+          command: php artisan test
 
 workflows:
   version: 2
