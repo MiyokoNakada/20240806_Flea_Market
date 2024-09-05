@@ -20,9 +20,17 @@ jobs:
       - checkout
 
       - run:
-          name: Debug Network
+          name: Wait for MySQL
           command: |
-            nc -z mysql 3306
+            for i in `seq 1 30`; do
+              nc -z mysql 3306 && break
+              echo "Waiting for MySQL..."
+              sleep 1
+            done
+            
+      - run:
+          name: List Docker Containers
+          command: docker ps -a
 
       - run:
           name: Install Dependencies
