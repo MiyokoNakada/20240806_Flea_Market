@@ -20,13 +20,9 @@ jobs:
       - checkout
 
       - run:
-          name: Wait for MySQL
+          name: Debug MySQL Connection
           command: |
-            for i in `seq 1 30`; do
-              nc -z mysql 3306 && break
-              echo "Waiting for MySQL..."
-              sleep 1
-            done
+            docker exec -it <php-container-id> bash -c "nc -z mysql 3306"
 
       - run:
           name: Install Dependencies
