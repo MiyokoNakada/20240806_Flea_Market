@@ -20,14 +20,10 @@ jobs:
       - checkout
 
       - run:
-          name: Check MySQL Container Status
-          command: |
-            docker ps -a
-      - run:
           name: Debug Network
           command: |
             nc -z mysql 3306
-            
+
       - run:
           name: Install Dependencies
           command: |
