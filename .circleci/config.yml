@@ -43,7 +43,7 @@ jobs:
       - run:
           name: Run Tests
           working_directory: ~/project/src
-          command: 
+          command: |
             php artisan migrate --database=mysql --force
             php artisan db:seed --class=TestSeeder
             php artisan test
