@@ -5,29 +5,59 @@ jobs:
     docker:
       - image: cimg/php:8.2-node
         environment:
+          APP_ENV: test
+          DB_CONNECTION: mysql_test
           DB_HOST: 127.0.0.1
-          DB_DATABASE: laravel_db
-          DB_USERNAME: laravel_user
-          DB_PASSWORD: laravel_pass
+          DB_DATABASE: demo_test
+        #   DB_USERNAME: 'root'
+        #   DB_PASSWORD: 'root'
       - image: circleci/mysql:8.0
         environment:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: laravel_db
-          MYSQL_USER: laravel_user
-          MYSQL_PASSWORD: laravel_pass
+          MYSQL_DATABASE: demo_test
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_ROOT_PASSWORD: ""
 
     steps:
       - checkout
-      - run: composer install
-      - run: npm install
-      - run: cp .env.example .env
-      - run: php artisan key:generate
-      - run: php artisan migrate --force
-      - run: npm run dev
-      - run: vendor/bin/phpunit
+
+      # - run:
+      #     name: Wait for MySQL
+      #     command: |
+      #       for i in `seq 1 30`; do
+      #         nc -z mysql 3306 && break
+      #         echo "Waiting for MySQL..."
+      #         sleep 1
+      #       done
+
+      - run:
+          name: Install Dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y libzip-dev unzip
+            sudo docker-php-ext-install zip pdo_mysql
+            
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+
+      - run:
+          name: Install Composer Dependencies
+          working_directory: ~/project/src
+          command: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - save_cache:
+          paths:
+            - vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+     
+      - run:
+          name: Run Tests
+          working_directory: ~/project/src
+          command: php artisan test
 
 workflows:
   version: 2
-  test_and_deploy:
+  test:
     jobs:
       - test
