@@ -39,14 +39,14 @@ jobs:
           name: Install Composer Dependencies
           working_directory: ~/project/src
           command: composer install --no-interaction --prefer-dist --optimize-autoloader
-      
-      - run: php artisan migrate --database=mysql --force
-      - run: php artisan db:seed --class=TestSeeder
-          
+     
       - run:
           name: Run Tests
           working_directory: ~/project/src
-          command: php artisan test
+          command: 
+            php artisan migrate --database=mysql --force
+            php artisan db:seed --class=TestSeeder
+            php artisan test
 
 workflows:
   version: 2
