@@ -27,10 +27,6 @@ jobs:
               echo "Waiting for MySQL..."
               sleep 1
             done
-            
-      - run:
-          name: List Docker Containers
-          command: docker ps -a
 
       - run:
           name: Install Dependencies
