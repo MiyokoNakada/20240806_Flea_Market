@@ -20,10 +20,14 @@ jobs:
       - checkout
 
       - run:
-          name: Debug MySQL Connection
+          name: Check MySQL Container Status
           command: |
-            docker exec -it <php-container-id> bash -c "nc -z mysql 3306"
-
+            docker ps -a
+      - run:
+          name: Debug Network
+          command: |
+            nc -z mysql 3306
+            
       - run:
           name: Install Dependencies
           command: |
