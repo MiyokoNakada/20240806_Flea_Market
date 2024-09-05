@@ -7,7 +7,7 @@ jobs:
         environment:
           APP_ENV: test
           DB_CONNECTION: mysql_test
-          DB_HOST: mysql
+          DB_HOST: 127.0.0.1
           DB_DATABASE: demo_test
           DB_USERNAME: 'root'
           DB_PASSWORD: 'root'
