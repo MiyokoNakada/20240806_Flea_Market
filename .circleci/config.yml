@@ -12,9 +12,11 @@ jobs:
         #   DB_USERNAME: 'root'
         #   DB_PASSWORD: 'root'
       - image: mysql:8.0
+        name: "mysql"
         environment:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: demo_test
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
 
     steps:
       - checkout
