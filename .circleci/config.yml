@@ -1,33 +1,27 @@
+
 version: 2.1
 
 jobs:
-  test:
+  build:
     docker:
       - image: cimg/php:8.2-node
-        environment:
-          APP_ENV: test
-          DB_CONNECTION: mysql_test
-          DB_HOST: 127.0.0.1
-          DB_DATABASE: demo_test
-        #   DB_USERNAME: 'root'
-        #   DB_PASSWORD: 'root'
-      - image: circleci/mysql:8.0
-        environment:
-          MYSQL_DATABASE: demo_test
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          MYSQL_ROOT_PASSWORD: ""
+      - image: cimg/mysql:8.0
+    environment:
+      - APP_ENV: testing
+      - DB_CONNECTION: circle_test
+      - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
 
     steps:
       - checkout
 
-      # - run:
-      #     name: Wait for MySQL
-      #     command: |
-      #       for i in `seq 1 30`; do
-      #         nc -z mysql 3306 && break
-      #         echo "Waiting for MySQL..."
-      #         sleep 1
-      #       done
+      - run:
+          name: Wait for MySQL
+          command: |
+            for i in `seq 1 30`; do
+              nc -z mysql 3306 && break
+              echo "Waiting for MySQL..."
+              sleep 1
+            done
 
       - run:
           name: Install Dependencies
@@ -57,7 +51,6 @@ jobs:
           command: php artisan test
 
 workflows:
-  version: 2
   test:
     jobs:
-      - test
+      - build
