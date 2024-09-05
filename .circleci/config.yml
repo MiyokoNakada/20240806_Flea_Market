@@ -4,19 +4,18 @@ jobs:
   test:
     docker:
       - image: cimg/php:8.2-node
-        # environment:
-        #   APP_ENV: test
-        #   DB_CONNECTION: mysql_test
-        #   DB_HOST: 127.0.0.1
-        #   DB_DATABASE: demo_test
+        environment:
+          APP_ENV: test
+          DB_CONNECTION: mysql_test
+          DB_HOST: 127.0.0.1
+          DB_DATABASE: demo_test
         #   DB_USERNAME: 'root'
         #   DB_PASSWORD: 'root'
-      - image: mysql:8.0
-        name: "mysql"
+      - image: circleci/mysql:8.0
         environment:
-          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: demo_test
           MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_ROOT_PASSWORD: ""
 
     steps:
       - checkout
@@ -37,10 +36,20 @@ jobs:
             sudo apt-get install -y libzip-dev unzip
             sudo docker-php-ext-install zip pdo_mysql
             
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+
       - run:
           name: Install Composer Dependencies
           working_directory: ~/project/src
           command: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - save_cache:
+          paths:
+            - vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
      
       - run:
           name: Run Tests
