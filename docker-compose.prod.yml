@@ -19,8 +19,8 @@ services:
     image: phpmyadmin/phpmyadmin
     environment:
       - PMA_ARBITRARY=1
-      - PMA_HOST=RDS_endpoint
-      - PMA_USER=RDS_user
-      - PMA_PASSWORD=RDS_password
+      - PMA_HOST=${DB_HOST}
+      - PMA_USER=${DB_USERNAME}
+      - PMA_PASSWORD=${DB_PASSWORD}
     ports:
       - 8080:80
