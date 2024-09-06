@@ -54,7 +54,7 @@ jobs:
       - run:
           name: Deploy to EC2
           command: |
-            ssh -o StrictHostKeyChecking=no ec2-user@3.26.230.133 "cd coachtech_flea_market/20240806_Flea_Market/ && git pull origin main && docker-compose -f docker-compose.prod.yml up -d"
+            ssh -vvv -o StrictHostKeyChecking=no ec2-user@3.26.230.133 "cd coachtech_flea_market/20240806_Flea_Market/ && git pull origin main && docker-compose -f docker-compose.prod.yml up -d"
 
 
 workflows:
