@@ -24,6 +24,13 @@ class Comment extends Model
     public function item()
     {
         return $this->belongsTo(Item::class);
-    }  
+    }
 
+    //検索用のローカルスコープ
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if (!empty($keyword)) {
+            $query->where('comment', 'like', '%' . $keyword . '%');
+        }
+    }
 }

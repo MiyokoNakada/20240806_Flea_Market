@@ -52,8 +52,10 @@ Route::middleware(['auth', 'verified'])->group(
             Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
             Route::get('/admin/user', [AdminController::class, 'userManagement']);
             Route::delete('/admin/user/delete', [AdminController::class, 'deleteUser']);
+            Route::post('/admin/user/search', [AdminController::class, 'userSearch']);
             Route::get('/admin/comment', [AdminController::class, 'commentManagement']);
             Route::delete('/admin/comment/delete', [AdminController::class, 'deleteComment']);
+            Route::post('/admin/comment/search', [AdminController::class, 'commentSearch']);
             Route::post('/admin/send_email', [AdminController::class, 'sendEmail']);
         });
     }
