@@ -41,7 +41,7 @@ h2{
     border-radius: 4px;
     padding-left: 10px;
     margin-bottom: 20px;
-    appearance: none;  /* select矢印 */
+    appearance: none;
 }
 
 .sell-form__image{

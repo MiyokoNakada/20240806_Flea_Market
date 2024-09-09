@@ -26,7 +26,6 @@ class SearchRequest extends FormRequest
         ];
     }
 
-    //エラーメッセージの編集
     public function messages()
     {
         return [

@@ -39,7 +39,6 @@ class SellTest extends TestCase
         $this->assertEquals('This is a test item.', $item->description);
         $this->assertEquals(1000, $item->price);
         $this->assertEquals($user->id, $item->user_id);
-        // $this->assertFileExists(storage_path('app/public/image/' . $file->getClientOriginalName()));
         $this->assertEquals([1, 2], $item->categories->pluck('id')->toArray());
     }
 }

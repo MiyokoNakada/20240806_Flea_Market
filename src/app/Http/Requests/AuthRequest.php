@@ -27,7 +27,6 @@ class AuthRequest extends FormRequest
         ];
     }
     
-    //エラーメッセージの編集
     public function messages()
     {
         return [
