@@ -25,8 +25,7 @@ class CommentRequest extends FormRequest
             'comment' => ' required | string | max: 191',
         ];
     }
-
-    //エラーメッセージの編集
+    
     public function messages()
     {
         return [

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Payment;
 use Stripe\Stripe;
 use Stripe\Customer;
-use Stripe\Charge;
 use Stripe\Checkout\Session;
 
 class PaymentController extends Controller

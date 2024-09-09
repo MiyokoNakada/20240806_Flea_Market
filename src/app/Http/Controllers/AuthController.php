@@ -26,7 +26,7 @@ class AuthController extends Controller
 
     protected $guard;
 
-    //Registerの処理
+    //Register機能
     public function register(AuthRequest $request, CreatesNewUsers $creator): RegisterResponse
     {
         $request->merge(['username' => $request->email,]);
@@ -41,7 +41,7 @@ class AuthController extends Controller
         return view('auth.thanks');
     }
 
-    //loginの処理
+    //login機能
     public function login(AuthRequest $request)
     {
         return $this->loginPipeline($request)->then(function ($request) {
@@ -71,7 +71,7 @@ class AuthController extends Controller
         ]));
     }
 
-    //logoutの処理
+    //logout機能
     public function logout(Request $request): LogoutResponse
     {
         Auth::guard('web')->logout();

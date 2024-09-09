@@ -23,6 +23,7 @@ class AdminController extends Controller
         $users = User::all();
         return view('admin_user', compact('users'));
     }
+
     //ユーザー削除機能
     public function deleteUser(Request $request){
         $user_id = $request->id;
@@ -31,13 +32,13 @@ class AdminController extends Controller
         return redirect('/admin/user')->with('message', 'ユーザーが削除されました。');
     }
 
-
     //コメント管理ページ表示
     public function commentManagement()
     {
         $comments = Comment::with('user', 'item')->get();
         return view('admin_comment', compact('comments'));
     }    
+
     //コメント削除機能
     public function deleteComment(Request $request){
         $comment_id = $request->id;
