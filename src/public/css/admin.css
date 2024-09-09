@@ -67,7 +67,7 @@
     padding: 0 10px ;
 }
 
-/* .user_search,
+.user_search,
 .comment_search{
     margin-bottom: 50px;
 }
@@ -79,12 +79,25 @@
 .comment_search input{
     width: 60%;
     height: 30px;
-} */
+}
+.user_search button,
+.comment_search button,
+.user_list__table button,
+.comment_list__table button{
+    height: 30px;
+    padding: 0 10px;
+    color: white;
+    background-color: #FF5555;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
 .user_list__table,
 .comment_list__table{
     margin-left: 20px;
     width: 100%;
+    text-align: left;
 }
 .user_list__table td:not(:last-child),
 .comment_list__table td:not(:last-child){
