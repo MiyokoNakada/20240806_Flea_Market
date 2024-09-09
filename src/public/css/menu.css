@@ -58,25 +58,31 @@
     .header-logo img{
         max-width: 80%;
     }
-
     .header-search{
         width: 80%;
         height: 100%;
         margin-left: 0;
     }
-
     .header-navi li{
        width: 70px;
     }
-
     .header-navi a, 
     .header-navi__logout-btn{
         font-size: 10px;
-    }
-   
+    }   
     .header-navi__submit-btn{
         width: 50px;
         height: 80%;
         font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .menu{
+        height: 8vh;
+    }
+    .header-search input{
+        padding-left: 0;
+        line-break: anywhere;
     }
 }

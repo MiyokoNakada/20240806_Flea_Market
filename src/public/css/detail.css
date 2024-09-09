@@ -8,6 +8,11 @@
         padding: 20px;
     }
 }
+@media screen and (max-width: 480px){
+    .detail{
+        display: block;
+    }
+}
 
 .detail-inner-left{
     width: 100%;
@@ -73,6 +78,11 @@
 }
 .item-contents::-webkit-scrollbar{
   display: none;
+}
+@media screen and (max-width: 768px){
+    .item-contents{
+        width: 100%;
+    }
 }
 
 .purchase-button button,

@@ -8,7 +8,7 @@
     margin-right: 100px;
 }
 .purchase-inner-right{
-    width: 25vw;
+    width: 30vw;
 }
 
 @media screen and (max-width: 768px){
@@ -23,6 +23,21 @@
         width: 40vw;
     }
 }
+@media screen and (max-width: 480px){
+    .purchase{
+        display: block;
+        margin: 30px 40px;
+    }
+    .purchase-inner-left{
+        width: 100%;
+        margin: 0;
+    }
+    .purchase-inner-right{
+        width: 100%;
+    }
+}
+
+
 
 .item-info{
     display: flex;
@@ -75,8 +90,7 @@
 
 .purchase-recap{
     width: 100%;
-    height: 30vh;
-    padding: 30px 0 0 30px;
+    padding: 20px 0 20px 20px;
     margin-bottom: 40px;
     border:#5F5F5F solid 1px ;
 }
