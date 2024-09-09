@@ -2,6 +2,11 @@
     width: 40%;
     margin:50px auto;
 }
+@media screen and (max-width: 480px) {
+  .auth-inner{
+    width: 60%;
+  }
+}
 
 h2{
     text-align: center;
