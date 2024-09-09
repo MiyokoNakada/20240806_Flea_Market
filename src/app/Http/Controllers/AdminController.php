@@ -21,7 +21,7 @@ class AdminController extends Controller
     //ユーザー管理ページ表示
     public function userManagement()
     {
-        $users = User::all();
+        $users = User::where('role', 'user')->get();
         return view('admin_user', compact('users'));
     }
 
