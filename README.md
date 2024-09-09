@@ -79,6 +79,22 @@ https://github.com/MiyokoNakada/20240806_Flea_Market
 
 ## 環境構築
 
+- 開発環境はローカル、本番環境はAWSを使用しています。<br>
+
+- メールの確認にはmailtrapを使用しています。<br>
+  https://mailtrap.io/email-sandbox/
+
+- 決済にはstripeを使用しています。<br>
+  https://stripe.com/jp
+
+- テスト用のユーザー<br>
+  管理者<br>
+  　Email: admin@email.com <br>
+  　Password: admin_pass <br>
+  一般ユーザー<br>
+  　Email: test@email.com <br>
+  　Password: test_pass <br>
+
 ### (1)開発環境のセットアップ
 
 #### 前提条件
@@ -125,8 +141,6 @@ https://github.com/MiyokoNakada/20240806_Flea_Market
    STRIPE_KEY=pk_test_51xxxx(your_stripe_key)
    STRIPE_SECRET=sk_test_51xxxx(your_stripe_secret_key)
    ```
-
-   ※メールおよびStripeに関する設定項目はそれぞれの環境に合わせて変更してください
 
 4. PHP コンテナにログイン後、composer のインストール
    ```sh
@@ -178,23 +192,11 @@ https://github.com/MiyokoNakada/20240806_Flea_Market
    ```
    server_name your_ec2_instance_public_ip;
    ```
-5. `docker-compose.prod.yml` ファイルを編集
-   ```
-   phpmyadmin:
-   image: phpmyadmin/phpmyadmin
-   environment:
-     - PMA_ARBITRARY=1
-     - PMA_HOST=RDS_endpoint
-     - PMA_USER=RDS_user
-     - PMA_PASSWORD=RDS_password
-   ports:
-     - 8080:80
-   ```
-6. Docker コンテナをビルドして起動
+5. Docker コンテナをビルドして起動
    ```sh
    docker-compose -f docker-compose.prod.yml up --build -d
    ```
-7. .env ファイルを作成し、必要な環境変数を設定
+6. .env ファイルを作成し、必要な環境変数を設定
 
    ```sh
    cp src/.env.example src/.env
@@ -232,28 +234,26 @@ https://github.com/MiyokoNakada/20240806_Flea_Market
    STRIPE_SECRET=sk_test_51xxxx(your_stripe_secret_key)
    ```
 
-   ※メールに関する設定項目もそれぞれの環境に合わせて変更
-
-8. PHP コンテナにログイン後、composer のインストール
+7. PHP コンテナにログイン後、composer のインストール
    ```sh
    docker-compose -f docker-compose.prod.yml exec php bash
    ```
    ```php
    composer install
    ```   
-9. S3ファイルシステムのインストール
+8. S3ファイルシステムのインストール
    ```php
    composer require league/flysystem-aws-s3-v3 "^3.0" --with-all-dependencies
    ```
-10. アプリケーションキーの作成
+9. アプリケーションキーの作成
     ```php
     php artisan key:generate
     ```
-11. マイグレーションの実行  
+10. マイグレーションの実行  
     ```php
     php artisan migrate
     ```
-12. シンボリックリンクの作成
+11. シンボリックリンクの作成
     ```php
     php artisan storage:link
     ```
