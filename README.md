@@ -36,7 +36,6 @@
 ## URL
 
 - 本番環境：http://3.26.230.133/
-  （URL でログイン後にトップページに遷移します)
 - 開発環境：http://localhost/
 - phpMyAdmin：http://localhost:8080/
   <br><br>
@@ -78,24 +77,27 @@ https://github.com/MiyokoNakada/20240806_Flea_Market
 <br><br>
 
 ## 環境構築
-
+- サンプルユーザー<br>
+  管理者<br>
+  　Email: admin@email.com <br>
+  　Password: admin_pass <br><br>
+  一般ユーザー<br>
+  　Email: test@email.com <br>
+  　Password: test_pass <br><br>
+   
 - 開発環境はローカル、本番環境はAWSを使用しています。<br>
 
 - メールの確認にはmailtrapを使用しています。<br>
-  https://mailtrap.io/email-sandbox/
+  https://mailtrap.io/email-sandbox/　<br>
 
 - 決済にはstripeを使用しています。<br>
-  https://stripe.com/jp
+  https://stripe.com/jp　<br>
+  
+- テストにはテスト用データベースdemo_testを使用しています。<br>
 
-- テスト用のユーザー<br>
-  管理者<br>
-  　Email: admin@email.com <br>
-  　Password: admin_pass <br>
-  一般ユーザー<br>
-  　Email: test@email.com <br>
-  　Password: test_pass <br>
 
-### (1)開発環境のセットアップ
+
+### (1) 開発環境のセットアップ
 
 #### 前提条件
 
@@ -165,8 +167,40 @@ https://github.com/MiyokoNakada/20240806_Flea_Market
    ```php
    php artisan db:seed
    ```
+<br>
 
-### (2)本番環境のセットアップ
+### (2) テスト環境のセットアップ
+1. テスト用データベースの作成 <br>
+   MySQLにrootユーザーでログインし、'demo_test' データベースを新たに作成
+   ```sql
+   CREATE DATABASE demo_test;
+   ```
+2. .env をコピーして .env.testing を作成
+   ```sh
+   cp src/.env src/.env.testing
+   ```
+   ```env
+   APP_ENV=test
+   APP_KEY=　空にする
+   DB_DATABASE=demo_test
+   DB_USERNAME=root
+   DB_PASSWORD=root
+   ```
+3. アプリケーションキーの作成
+   ```php
+   php artisan key:generate --env=testing
+   ```
+4. キャッシュをクリア
+   ```php
+   php artisan config:clear
+   ```
+5. マイグレーションの実行
+   ```php
+   php artisan migrate --env=testing
+   ```
+<br>
+
+### (3) 本番環境のセットアップ
 
 #### 前提条件
 
