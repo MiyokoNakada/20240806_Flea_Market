@@ -1,20 +1,22 @@
 <div class="menu">
-    <div class="header-logo">
-        <a href="/">
-            <img src="{{ asset('img/logo.svg') }}" alt="COACHTECH">
-        </a>
-    </div>
+    <div class="header-logo_and_search">
+        <div class="header-logo">
+            <a href="/">
+                <img src="{{ asset('img/logo.svg') }}" alt="COACHTECH">
+            </a>
+        </div>
 
-    <div class="header-search">
-        <form class="search__form" action="/item/search" method="post">
-            @csrf
-            <input class="search__option" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
-            <div class="error">
-                @error('keyword')
-                {{ $message }}
-                @enderror
-            </div>
-        </form>
+        <div class="header-search">
+            <form class="search__form" action="/item/search" method="post">
+                @csrf
+                <input class="search__option" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
+                <div class="error">
+                    @error('keyword')
+                    {{ $message }}
+                    @enderror
+                </div>
+            </form>
+        </div>
     </div>
 
     <nav class="header-navi">

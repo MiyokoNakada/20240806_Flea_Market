@@ -32,7 +32,7 @@
             </div>
             <div class="profile-form__item">
                 <label for="name">ユーザー名</label>
-                <input type="text" name="name" value="{{ old('name') }}">
+                <input type="text" name="name" value="{{ old('name', $profile->user->name ?? '') }}">
                 <div class="error">
                     @error('name')
                     {{ $message }}
@@ -41,7 +41,7 @@
             </div>
             <div class="profile-form__item">
                 <label for="postal_code">郵便番号</label>
-                <input type="text" name="postal_code" value="{{ old('postal_code') }}">
+                <input type="text" name="postal_code" value="{{ old('postal_code', $profile->postal_code ?? '')  }}">
                 <div class="error">
                     @error('postal_code')
                     {{ $message }}
@@ -50,7 +50,7 @@
             </div>
             <div class="profile-form__item">
                 <label for="address">住所</label>
-                <input type="text" name="address" value="{{ old('address') }}">
+                <input type="text" name="address" value="{{ old('address', $profile->address ?? '')}}">
                 <div class="error">
                     @error('address')
                     {{ $message }}
@@ -59,7 +59,7 @@
             </div>
             <div class="profile-form__item">
                 <label for="building">建物名</label>
-                <input type="text" name="building" value="{{ old('building') }}">
+                <input type="text" name="building" value="{{ old('building', $profile->building ?? '') }}">
                 <div class="error">
                     @error('building')
                     {{ $message }}

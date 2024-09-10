@@ -92,6 +92,10 @@
     border-radius: 4px;
     cursor: pointer;
 }
+.user_list__table button,
+.comment_list__table button{
+    height: fit-content;
+}
 
 .user_list__table,
 .comment_list__table{

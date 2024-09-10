@@ -38,7 +38,10 @@ class MypageController extends Controller
     //プロフィール編集ページ表示
     public function profile()
     {
-        return view('profile');
+        $user_id = Auth::user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+
+        return view('profile', compact('profile'));
     }
 
     //プロフィール更新機能
