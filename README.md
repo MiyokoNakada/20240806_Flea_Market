@@ -5,13 +5,13 @@
 <br>
 ＜トップページ＞  <br>
 　商品の一覧が表示されます。マイリストタブでお気に入りに登録した商品の一覧が見られます。<br>
-  ヘッダーにある検索窓から商品を検索できます。<br>
+　ヘッダーにある検索窓から商品を検索できます。<br>
   <img src="https://github.com/user-attachments/assets/f58a7d02-6103-43bd-a2b9-9d998ba910ad" width=60%><br><br>
 
 
 ＜商品詳細ページ＞<br>
 　各商品の詳細説明を見ることができます。この画面から購入へと進めます。<br>
-  お気に入り登録とコメントの送信ができます。<br>
+　お気に入り登録とコメントの送信ができます。<br>
   <img src="https://github.com/user-attachments/assets/50c5fb17-dce8-457a-a63f-3da0f2240fd2" width=60%><br><br>
 
 ＜マイページ＞ <br>
@@ -25,10 +25,11 @@
 ＜購入ページ＞ <br>
 　支払金額および支払い方法が表示されるので、このページで確認できます。<br>
 　支払い方法および配送先の変更ができます。<br>
+　支払いはクレジットカード、コンビニ支払い、銀行振込のいずれかを選択できます。<br>
   <img src="https://github.com/user-attachments/assets/f16be252-2997-40eb-b118-989d52f2fc89" width=60%><br><br>
 
 ＜管理者用ページ＞ <br>
-　管理者専用の画面です。管理者用のユーザー名とパスワードでログインすると遷移します。
+　管理者専用の画面です。管理者用のユーザー名とパスワードでログインすると遷移します。<br>
   メールの送信、ユーザーの削除、コメントの削除ができます。<br>
   <img src="https://github.com/user-attachments/assets/083e4d0f-5ad1-448d-9167-52967e074a5e" width=60%><br><br>
 
@@ -94,6 +95,9 @@ https://github.com/MiyokoNakada/20240806_Flea_Market
   https://stripe.com/jp　<br>
   
 - テストにはテスト用データベースdemo_testを使用しています。<br>
+
+- 自動テスト/デプロイにはCircleCIを使用しています。<br>
+  https://app.circleci.com　　<br><br>
 
 
 
