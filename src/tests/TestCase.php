@@ -4,11 +4,6 @@ namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Database\Seeders\CategoriesTableSeeder;
-use Database\Seeders\ConditionsTableSeeder;
-use Database\Seeders\ItemsTableSeeder;
-use Database\Seeders\UsersTableSeeder;
-use Database\Seeders\CategoryItemTableSeeder;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
 
