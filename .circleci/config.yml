@@ -43,27 +43,27 @@ jobs:
             php artisan test
 
 
-  # deploy:
-  #   docker:
-  #     - image: cimg/base:stable
-  #   steps:
-  #     - add_ssh_keys:
-  #         fingerprints:
-  #           - "SHA256:odpq336gWb9RF6XuypSBLQt6yQzGshZypEDisclQ/Z8"
+  deploy:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:95yBb/qtbP31HqZ8J0yprFbvWbLKJlx+76iRWwU+uXY"
 
-  #     - run:
-  #         name: Deploy to EC2
-  #         command: |
-  #           ssh -vvv -o StrictHostKeyChecking=no ec2-user@3.26.230.133 "cd coachtech_flea_market/20240806_Flea_Market/ && git pull origin main && docker-compose -f docker-compose.prod.yml up -d"
+      - run:
+          name: Deploy to EC2
+          command: |
+            ssh -vvv -o StrictHostKeyChecking=no ec2-user@3.26.230.133 "cd coachtech_flea_market/20240806_Flea_Market/ && git pull origin main && docker-compose -f docker-compose.prod.yml up -d"
 
 
 workflows:
   test:
     jobs:
       - build
-      # - deploy:
-      #     requires:
-      #       - build
-      #     filters:
-      #       branches:
-      #           only: main
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+                only: main
