@@ -89,15 +89,15 @@ https://github.com/MiyokoNakada/20240806_Flea_Market
 - 開発環境はローカル、本番環境はAWSを使用しています。<br>
 
 - メールの確認にはmailtrapを使用しています。<br>
-  https://mailtrap.io/email-sandbox/　<br>
+  https://mailtrap.io/email-sandbox/<br>
 
 - 決済にはstripeを使用しています。<br>
-  https://stripe.com/jp　<br>
+  https://stripe.com/jp<br>
   
 - テストにはテスト用データベースdemo_testを使用しています。<br>
 
 - 自動テスト/デプロイにはCircleCIを使用しています。<br>
-  https://app.circleci.com　　<br><br>
+  https://app.circleci.com<br><br>
 
 
 
