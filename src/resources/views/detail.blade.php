@@ -43,7 +43,7 @@
         <div class="item-overview">
             <h2>{{ $item->name }}</h2>
             <p><span class="item-overview_brand">ブランド名:{{ $item->brand }}</span></p>
-            <p><span class="item-overview_price">&yen;{{ $item->price }}</span></p>
+            <p><span class="item-overview_price">&yen;{{ $item->price }}(値段)</span></p>
             <div class="item-overview__button">
                 <div class="favourite-count">
                     <i class="favourite-icon fa-regular fa-star fa-xl {{ $isFavourited ? 'favourited' : '' }}" data-item-id="{{ $item->id }}"></i>
