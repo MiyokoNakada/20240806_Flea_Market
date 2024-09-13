@@ -68,7 +68,7 @@ https://github.com/MiyokoNakada/20240806_Flea_Market
 <br><br>
 
 ## テーブル設計
-<img src="https://github.com/user-attachments/assets/d133592e-3d1a-48ff-9978-1b22232955e0" width=60%><br>
+<img src="https://github.com/user-attachments/assets/982f717d-c957-4b13-b397-59a4a0d0b9cc" width=60%><br>
 <img src="https://github.com/user-attachments/assets/6edef6d3-e7e4-4ba0-a62b-2ad01717fcd6" width=60%><br>
 <img src="https://github.com/user-attachments/assets/a993593a-99e8-45fc-a457-a7536978de46" width=60%><br>
 <br><br>
